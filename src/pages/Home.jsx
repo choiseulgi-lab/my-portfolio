@@ -715,7 +715,7 @@ function ContactSection() {
           </Grid>
 
           {/* ── 우측: 방명록 폼 + 피드 */}
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={7} sx={{ pt: { md: 'calc(5.5rem * 0.9 + 48px) !important' } }}>
             <Typography
               sx={{
                 color: 'rgba(224,224,224,0.35)',
