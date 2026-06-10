@@ -15,7 +15,7 @@ export default function AboutMe() {
       <Container maxWidth="md" sx={{ textAlign: 'center' }}>
         <Typography
           variant="overline"
-          sx={{ color: 'var(--color-primary)', letterSpacing: 4, mb: 2, display: 'block' }}
+          sx={{ color: 'var(--color-primary)', letterSpacing: 0, mb: 2, display: 'block' }}
         >
           About Me
         </Typography>
