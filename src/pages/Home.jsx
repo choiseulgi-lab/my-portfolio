@@ -280,11 +280,12 @@ function ProjectsSection() {
 const inputSx = {
   '& .MuiInput-root': {
     color: '#E0E0E0',
+    fontSize: '0.875rem',
     '&:before': { borderBottomColor: 'rgba(224,224,224,0.18)' },
     '&:hover:not(.Mui-disabled):before': { borderBottomColor: 'rgba(224,224,224,0.45)' },
     '&:after': { borderBottomColor: '#C4E038' },
   },
-  '& .MuiInputLabel-root': { color: 'rgba(224,224,224,0.3)', fontSize: '0.72rem', letterSpacing: 2 },
+  '& .MuiInputLabel-root': { color: 'rgba(224,224,224,0.3)', fontSize: '0.875rem', letterSpacing: 1 },
   '& .MuiInputLabel-root.Mui-focused': { color: '#C4E038' },
 }
 
@@ -299,7 +300,7 @@ const INFO_ROWS = [
           component="a"
           href="mailto:choiseulgi91@naver.com"
           className="info-value"
-          sx={{ color: '#E0E0E0', textDecoration: 'none', fontSize: { xs: '0.72rem', md: '0.8rem' }, transition: 'color 0.2s', '&:hover': { color: '#C4E038' } }}
+          sx={{ color: '#E0E0E0', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 0.2s', '&:hover': { color: '#C4E038' } }}
         >
           choiseulgi91@naver.com
         </Typography>
@@ -309,7 +310,7 @@ const INFO_ROWS = [
             onClick={onCopy}
             sx={{ color: copied ? '#C4E038' : 'rgba(224,224,224,0.22)', p: 0.5, transition: 'color 0.2s', '&:hover': { color: '#C4E038', backgroundColor: 'transparent' } }}
           >
-            <ContentCopyIcon sx={{ fontSize: 12 }} />
+            <ContentCopyIcon sx={{ fontSize: 16 }} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -318,7 +319,7 @@ const INFO_ROWS = [
   {
     label: 'LOCATION',
     renderValue: () => (
-      <Typography className="info-value" sx={{ color: '#E0E0E0', fontSize: { xs: '0.72rem', md: '0.8rem' }, transition: 'color 0.2s' }}>
+      <Typography className="info-value" sx={{ color: '#E0E0E0', fontSize: '0.875rem', transition: 'color 0.2s' }}>
         Ulsan, South Korea
       </Typography>
     ),
@@ -330,7 +331,7 @@ const INFO_ROWS = [
         component="a"
         href="#"
         className="info-value"
-        sx={{ color: '#E0E0E0', textDecoration: 'none', fontSize: { xs: '0.72rem', md: '0.8rem' }, transition: 'color 0.2s', '&:hover': { color: '#C4E038' } }}
+        sx={{ color: '#E0E0E0', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 0.2s', '&:hover': { color: '#C4E038' } }}
       >
         Download PDF
       </Typography>
@@ -418,7 +419,7 @@ function GuestbookForm({ onSubmitSuccess }) {
             />
           }
           label={
-            <Typography sx={{ fontSize: '0.65rem', color: 'rgba(224,224,224,0.4)', whiteSpace: 'nowrap', letterSpacing: 1.5 }}>
+            <Typography sx={{ fontSize: '0.875rem', color: 'rgba(224,224,224,0.4)', whiteSpace: 'nowrap' }}>
               이메일 공개
             </Typography>
           }
@@ -447,7 +448,7 @@ function GuestbookForm({ onSubmitSuccess }) {
       />
 
       <Box sx={{ mb: 4 }}>
-        <Typography sx={{ fontSize: '0.65rem', letterSpacing: 2.5, color: 'rgba(224,224,224,0.3)', mb: 1.5 }}>
+        <Typography sx={{ fontSize: '0.875rem', letterSpacing: 1, color: 'rgba(224,224,224,0.3)', mb: 1.5 }}>
           EMOJI *
         </Typography>
         <Box sx={{ display: 'flex', gap: 1.5 }}>
@@ -496,8 +497,8 @@ function GuestbookForm({ onSubmitSuccess }) {
           border: '1px solid rgba(224,224,224,0.18)',
           borderRadius: 0,
           px: 4, py: 1.5,
-          fontSize: '0.7rem',
-          letterSpacing: 3,
+          fontSize: '0.875rem',
+          letterSpacing: 2,
           fontWeight: 500,
           transition: 'all 0.3s ease',
           '&:hover': {
@@ -546,7 +547,7 @@ function GuestbookFeed({ refreshTrigger }) {
 
   if (entries.length === 0) {
     return (
-      <Typography sx={{ color: 'rgba(224,224,224,0.18)', fontSize: '0.72rem', letterSpacing: 1.5, mt: 2, py: 4, textAlign: 'center' }}>
+      <Typography sx={{ color: 'rgba(224,224,224,0.18)', fontSize: '0.875rem', mt: 2, py: 4, textAlign: 'center' }}>
         아직 작성된 방명록이 없어요. 첫 번째 방명록을 남겨주세요!
       </Typography>
     )
@@ -561,11 +562,11 @@ function GuestbookFeed({ refreshTrigger }) {
             <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 1, mb: 1, flexWrap: 'wrap' }}>
               <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1, flexWrap: 'wrap' }}>
                 <Typography component="span" sx={{ fontSize: '1rem', lineHeight: 1 }}>{entry.emoji}</Typography>
-                <Typography sx={{ color: '#E0E0E0', fontSize: '0.82rem', fontWeight: 600 }}>
+                <Typography sx={{ color: '#E0E0E0', fontSize: '0.875rem', fontWeight: 600 }}>
                   {entry.writer_name}
                 </Typography>
                 {entry.company_or_job && (
-                  <Typography sx={{ color: 'rgba(224,224,224,0.35)', fontSize: '0.68rem' }}>
+                  <Typography sx={{ color: 'rgba(224,224,224,0.35)', fontSize: '0.875rem' }}>
                     · {entry.company_or_job}
                   </Typography>
                 )}
@@ -573,13 +574,13 @@ function GuestbookFeed({ refreshTrigger }) {
                   <Typography
                     component="a"
                     href={`mailto:${entry.email}`}
-                    sx={{ color: 'rgba(196,224,56,0.5)', fontSize: '0.65rem', textDecoration: 'none', '&:hover': { color: '#C4E038' }, transition: 'color 0.2s' }}
+                    sx={{ color: 'rgba(196,224,56,0.5)', fontSize: '0.875rem', textDecoration: 'none', '&:hover': { color: '#C4E038' }, transition: 'color 0.2s' }}
                   >
                     {entry.email}
                   </Typography>
                 )}
               </Box>
-              <Typography sx={{ color: 'rgba(224,224,224,0.2)', fontSize: '0.62rem', letterSpacing: 0.5, flexShrink: 0 }}>
+              <Typography sx={{ color: 'rgba(224,224,224,0.2)', fontSize: '0.875rem', flexShrink: 0 }}>
                 {new Date(entry.created_at).toLocaleDateString('ko-KR')}
               </Typography>
             </Box>
@@ -592,8 +593,8 @@ function GuestbookFeed({ refreshTrigger }) {
                   px: 1, py: 0.25,
                   border: '1px solid rgba(196,224,56,0.25)',
                   color: 'rgba(196,224,56,0.6)',
-                  fontSize: '0.6rem',
-                  letterSpacing: 1.5,
+                  fontSize: '0.875rem',
+                  letterSpacing: 0.5,
                   mb: 1.2,
                 }}
               >
@@ -601,7 +602,7 @@ function GuestbookFeed({ refreshTrigger }) {
               </Box>
             )}
 
-            <Typography sx={{ color: 'rgba(224,224,224,0.6)', fontSize: '0.78rem', lineHeight: 1.8, wordBreak: 'keep-all' }}>
+            <Typography sx={{ color: 'rgba(224,224,224,0.6)', fontSize: '0.875rem', lineHeight: 1.8, wordBreak: 'keep-all' }}>
               {entry.message}
             </Typography>
           </Box>
@@ -632,18 +633,18 @@ function ContactSection() {
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={{ xs: 8, md: 10 }} alignItems="flex-start">
+        <Grid container spacing={{ xs: 6, md: 6 }} alignItems="flex-start">
 
           {/* ── 좌측: CONTACT 타이틀 + 정보 리스트 + SNS */}
           <Grid item xs={12} md={5}>
             <Typography
               sx={{
-                fontSize: { xs: '5rem', sm: '6.5rem', md: '8.5rem' },
+                fontSize: { xs: '3.5rem', sm: '4.5rem', md: '5.5rem' },
                 fontWeight: 700,
                 color: '#E0E0E0',
-                letterSpacing: '-0.03em',
-                lineHeight: 0.85,
-                mb: 7,
+                letterSpacing: '-0.02em',
+                lineHeight: 0.9,
+                mb: 6,
                 fontFamily: '"Roboto", sans-serif',
               }}
             >
@@ -670,11 +671,11 @@ function ContactSection() {
                       className="info-label"
                       sx={{
                         color: 'rgba(224,224,224,0.28)',
-                        fontSize: '0.56rem',
-                        letterSpacing: 3.5,
+                        fontSize: '0.875rem',
+                        letterSpacing: 1.5,
                         fontWeight: 600,
                         transition: 'color 0.2s',
-                        minWidth: 72,
+                        minWidth: 90,
                         flexShrink: 0,
                       }}
                     >
@@ -699,10 +700,10 @@ function ContactSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
-                    color: 'rgba(224,224,224,0.15)',
+                    color: 'rgba(224,224,224,0.3)',
                     textDecoration: 'none',
-                    fontSize: '0.65rem',
-                    letterSpacing: 3,
+                    fontSize: '0.875rem',
+                    letterSpacing: 2,
                     fontWeight: 500,
                     transition: 'color 0.35s ease',
                     '&:hover': { color: '#E0E0E0' },
@@ -715,7 +716,7 @@ function ContactSection() {
 
             <Typography
               variant="caption"
-              sx={{ color: 'rgba(224,224,224,0.1)', display: 'block', mt: 6, letterSpacing: 1, fontSize: '0.6rem' }}
+              sx={{ color: 'rgba(224,224,224,0.2)', display: 'block', mt: 6, fontSize: '0.875rem' }}
             >
               © 2026 Choi Seulgi. All rights reserved.
             </Typography>
@@ -725,9 +726,9 @@ function ContactSection() {
           <Grid item xs={12} md={7}>
             <Typography
               sx={{
-                color: 'rgba(224,224,224,0.25)',
-                fontSize: '0.58rem',
-                letterSpacing: 4,
+                color: 'rgba(224,224,224,0.35)',
+                fontSize: '0.875rem',
+                letterSpacing: 2,
                 fontWeight: 600,
                 mb: 5,
               }}
