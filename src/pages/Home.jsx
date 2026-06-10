@@ -490,26 +490,18 @@ function GuestbookForm({ onSubmitSuccess }) {
 
       <Button
         type="submit"
+        variant="contained"
+        size="large"
         disabled={submitting}
         sx={{
-          color: '#E0E0E0',
-          backgroundColor: 'rgba(28,28,28,0.9)',
-          border: '1px solid rgba(224,224,224,0.18)',
-          borderRadius: 0,
-          px: 4, py: 1.5,
-          fontSize: '0.875rem',
-          letterSpacing: 2,
-          fontWeight: 500,
-          transition: 'all 0.3s ease',
-          '&:hover': {
-            backgroundColor: 'transparent',
-            borderColor: '#C4E038',
-            color: '#C4E038',
-          },
+          backgroundColor: 'var(--color-button-primary)',
+          color: 'var(--color-text-inverse)',
+          fontWeight: 700,
+          px: 4,
+          '&:hover': { backgroundColor: 'var(--color-button-hover)' },
           '&.Mui-disabled': {
-            color: 'rgba(224,224,224,0.18)',
-            borderColor: 'rgba(224,224,224,0.08)',
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(196,224,56,0.3)',
+            color: 'rgba(14,14,14,0.4)',
           },
         }}
       >
@@ -561,7 +553,7 @@ function GuestbookFeed({ refreshTrigger }) {
           <Box sx={{ py: 3 }}>
             <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 1, mb: 1, flexWrap: 'wrap' }}>
               <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1, flexWrap: 'wrap' }}>
-                <Typography component="span" sx={{ fontSize: '1rem', lineHeight: 1 }}>{entry.emoji}</Typography>
+                <Typography component="span" sx={{ fontSize: '0.875rem', lineHeight: 1 }}>{entry.emoji}</Typography>
                 <Typography sx={{ color: '#E0E0E0', fontSize: '0.875rem', fontWeight: 600 }}>
                   {entry.writer_name}
                 </Typography>
