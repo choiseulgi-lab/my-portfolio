@@ -125,7 +125,7 @@ export default function AboutMe() {
         <Grid container spacing={{ xs: 6, md: 8 }} alignItems="flex-start">
 
           {/* ── 좌측: 기본 정보 카드 ── */}
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={6}>
             <Box
               sx={{
                 backgroundColor: '#1E1E1E',
@@ -209,7 +209,7 @@ export default function AboutMe() {
           </Grid>
 
           {/* ── 우측: 콘텐츠 섹션 아코디언 ── */}
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={6}>
             <Box>
               {aboutMeData.sections.map((section) => (
                 <Accordion
@@ -265,7 +265,6 @@ export default function AboutMe() {
                         fontSize: '0.9375rem',
                         lineHeight: 2,
                         wordBreak: 'keep-all',
-                        maxWidth: 600,
                       }}
                     >
                       {section.content}
