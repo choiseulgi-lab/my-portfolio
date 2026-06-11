@@ -273,91 +273,77 @@ export default function AboutMe() {
                 </Accordion>
               ))}
             </Box>
+
+            {/* ── Skills 섹션 ── */}
+            <Box sx={{ mt: { xs: 6, md: 8 } }}>
+              <Typography
+                variant="overline"
+                sx={{ color: '#C4E038', letterSpacing: 0, mb: 5, display: 'block' }}
+              >
+                Skills
+              </Typography>
+              {skills.map(({ name, value, tooltip }) => (
+                <Box key={name} sx={{ mb: 4 }}>
+                  <Tooltip
+                    title={tooltip || ''}
+                    placement="top-start"
+                    arrow
+                    disableHoverListener={!tooltip}
+                    componentsProps={{
+                      tooltip: {
+                        sx: {
+                          backgroundColor: '#2A2A2A',
+                          color: '#C4E038',
+                          fontSize: '0.75rem',
+                          border: '1px solid rgba(196,224,56,0.2)',
+                        },
+                      },
+                      arrow: { sx: { color: '#2A2A2A' } },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        mb: 1.5,
+                        cursor: tooltip ? 'help' : 'default',
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          color: tooltip ? '#E0E0E0' : 'rgba(224,224,224,0.75)',
+                          fontWeight: 500,
+                          fontSize: '0.9375rem',
+                          transition: 'color 0.2s',
+                          '&:hover': tooltip ? { color: '#C4E038' } : {},
+                        }}
+                      >
+                        {name}
+                      </Typography>
+                      <Typography sx={{ color: '#C4E038', fontSize: '0.875rem', fontWeight: 600 }}>
+                        {value}%
+                      </Typography>
+                    </Box>
+                  </Tooltip>
+                  <LinearProgress
+                    variant="determinate"
+                    value={value}
+                    sx={{
+                      height: 6,
+                      borderRadius: 3,
+                      backgroundColor: 'rgba(255,255,255,0.06)',
+                      '& .MuiLinearProgress-bar': {
+                        background: 'linear-gradient(90deg, #9DB82C, #C4E038)',
+                        borderRadius: 3,
+                      },
+                    }}
+                  />
+                </Box>
+              ))}
+            </Box>
           </Grid>
 
         </Grid>
-
-        {/* ── Skills 섹션 ── */}
-        <Box sx={{ mt: { xs: 10, md: 14 } }}>
-          <Typography
-            variant="overline"
-            sx={{ color: '#C4E038', letterSpacing: 0, mb: 2, display: 'block' }}
-          >
-            Skills
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: { xs: '1.75rem', md: '2.5rem' },
-              fontWeight: 700,
-              color: '#E0E0E0',
-              letterSpacing: '-0.02em',
-              mb: 8,
-            }}
-          >
-            Tools & Proficiency
-          </Typography>
-
-          <Box sx={{ maxWidth: 640 }}>
-            {skills.map(({ name, value, tooltip }) => (
-              <Box key={name} sx={{ mb: 4 }}>
-                <Tooltip
-                  title={tooltip || ''}
-                  placement="top-start"
-                  arrow
-                  disableHoverListener={!tooltip}
-                  componentsProps={{
-                    tooltip: {
-                      sx: {
-                        backgroundColor: '#2A2A2A',
-                        color: '#C4E038',
-                        fontSize: '0.75rem',
-                        border: '1px solid rgba(196,224,56,0.2)',
-                      },
-                    },
-                    arrow: { sx: { color: '#2A2A2A' } },
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      mb: 1.5,
-                      cursor: tooltip ? 'help' : 'default',
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: tooltip ? '#E0E0E0' : 'rgba(224,224,224,0.75)',
-                        fontWeight: 500,
-                        fontSize: '0.9375rem',
-                        transition: 'color 0.2s',
-                        '&:hover': tooltip ? { color: '#C4E038' } : {},
-                      }}
-                    >
-                      {name}
-                    </Typography>
-                    <Typography sx={{ color: '#C4E038', fontSize: '0.875rem', fontWeight: 600 }}>
-                      {value}%
-                    </Typography>
-                  </Box>
-                </Tooltip>
-                <LinearProgress
-                  variant="determinate"
-                  value={value}
-                  sx={{
-                    height: 6,
-                    borderRadius: 3,
-                    backgroundColor: 'rgba(255,255,255,0.06)',
-                    '& .MuiLinearProgress-bar': {
-                      background: 'linear-gradient(90deg, #9DB82C, #C4E038)',
-                      borderRadius: 3,
-                    },
-                  }}
-                />
-              </Box>
-            ))}
-          </Box>
-        </Box>
 
       </Container>
     </Box>
