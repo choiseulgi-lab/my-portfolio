@@ -1,43 +1,269 @@
-import { Box, Container, Typography } from '@mui/material'
+import { useState } from 'react'
+import {
+  Box, Container, Typography, Grid,
+  Accordion, AccordionSummary, AccordionDetails,
+  Chip,
+} from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+
+const aboutMeData = {
+  basicInfo: {
+    name: '최슬기',
+    role: 'UI/UX Designer',
+    description: '1년간의 편집디자인 경험을 바탕으로 사용자가 이해하기 쉬운 인터페이스를 설계합니다.',
+    experience: '1 Year',
+    tools: 'Figma · Photoshop · Illustrator',
+    education: '전남대학교 수산과학과 (수중음향학 전공)',
+  },
+  sections: [
+    {
+      id: 'why-design',
+      title: 'Why Design',
+      content:
+        '사용자가 정보를 쉽고 편안하게 이해할 수 있는 화면을 만드는 것에 흥미를 느껴 UI/UX 디자인을 시작했습니다. 피그마를 활용해 다양한 서비스를 기획하고 설계하며, 사용자의 관점에서 더 쉽고 직관적인 경험을 만드는 방법을 꾸준히 고민하고 있습니다. 보기 좋은 화면을 넘어 문제를 해결하는 디자인을 만드는 것이 저의 목표입니다.',
+      showInHome: true,
+    },
+    {
+      id: 'how-i-design',
+      title: 'How I Design',
+      content:
+        '저는 모든 디자인에는 명확한 이유가 있어야 한다고 생각합니다. 정보의 우선순위를 분명하게 전달하고, 사용자가 자연스럽게 흐름을 따라갈 수 있도록 설계하는 것을 중요하게 여깁니다. 작은 간격과 정렬, 터치 영역까지도 근거를 가지고 결정하며 일관성 있는 사용자 경험을 만드는 데 집중합니다.',
+      showInHome: true,
+    },
+    {
+      id: 'how-i-learn',
+      title: 'How I Learn',
+      content:
+        '새로운 웹사이트와 앱을 탐색하는 것을 좋아합니다. 좋은 서비스를 발견하면 단순히 사용하는 데 그치지 않고 화면 구성과 사용자 흐름을 살펴보며 설계 의도를 분석합니다. 인상 깊은 디자인은 직접 피그마로 구현해 보며 구조와 원리를 이해하고, 이를 통해 실무 감각과 디자인 역량을 꾸준히 키워가고 있습니다.',
+      showInHome: false,
+    },
+  ],
+}
+
+const infoRows = [
+  { label: 'EXPERIENCE', value: aboutMeData.basicInfo.experience },
+  { label: 'TOOLS', value: aboutMeData.basicInfo.tools },
+  { label: 'EDUCATION', value: aboutMeData.basicInfo.education },
+]
 
 export default function AboutMe() {
+  const [expanded, setExpanded] = useState('why-design')
+
+  const handleChange = (panel) => (_, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
+  }
+
   return (
     <Box
       sx={{
         minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'var(--color-bg-primary)',
-        pt: 8,
+        backgroundColor: '#0E0E0E',
+        pt: { xs: 12, md: 14 },
+        pb: { xs: 10, md: 14 },
       }}
     >
-      <Container maxWidth="md" sx={{ textAlign: 'center' }}>
-        <Typography
-          variant="overline"
-          sx={{ color: 'var(--color-primary)', letterSpacing: 0, mb: 2, display: 'block' }}
-        >
-          About Me
-        </Typography>
-        <Typography variant="h3" sx={{ color: 'var(--color-text-primary)', fontWeight: 700, mb: 4 }}>
-          About Me 페이지가 개발될 공간입니다.
-        </Typography>
-        <Typography variant="h6" sx={{ color: 'var(--color-text-muted)', lineHeight: 1.8 }}>
-          상세한 자기소개가 들어갈 예정입니다.
-        </Typography>
-        <Box
-          sx={{
-            mt: 6,
-            p: 4,
-            border: '1px dashed var(--color-border-dark)',
-            borderRadius: 3,
-            backgroundColor: 'var(--color-secondary-light)',
-          }}
-        >
-          <Typography sx={{ color: 'var(--color-text-disabled)' }}>
-            🚧 개발 예정 공간입니다.
+      <Container maxWidth="lg">
+
+        {/* ── 페이지 헤더 ── */}
+        <Box sx={{ mb: { xs: 8, md: 12 } }}>
+          <Typography
+            variant="overline"
+            sx={{ color: '#C4E038', letterSpacing: 0, mb: 2, display: 'block' }}
+          >
+            About Me
           </Typography>
+          <Typography
+            sx={{
+              fontSize: { xs: '2.5rem', md: '4rem' },
+              fontWeight: 700,
+              color: '#E0E0E0',
+              letterSpacing: '-0.02em',
+              lineHeight: 1,
+              mb: 2,
+            }}
+          >
+            {aboutMeData.basicInfo.name}
+          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
+            <Chip
+              label={aboutMeData.basicInfo.role}
+              size="small"
+              sx={{
+                backgroundColor: 'rgba(196,224,56,0.1)',
+                color: '#C4E038',
+                border: '1px solid rgba(196,224,56,0.3)',
+                fontWeight: 600,
+                fontSize: '0.75rem',
+                letterSpacing: 0.5,
+              }}
+            />
+          </Box>
         </Box>
+
+        <Grid container spacing={{ xs: 6, md: 8 }} alignItems="flex-start">
+
+          {/* ── 좌측: 기본 정보 카드 ── */}
+          <Grid item xs={12} md={4}>
+            <Box
+              sx={{
+                backgroundColor: '#1E1E1E',
+                border: '1px solid #2A2A2A',
+                borderRadius: '12px',
+                p: 4,
+                position: { md: 'sticky' },
+                top: { md: 100 },
+              }}
+            >
+              <Typography
+                sx={{
+                  color: 'rgba(224,224,224,0.25)',
+                  fontSize: '0.7rem',
+                  letterSpacing: 4,
+                  fontWeight: 600,
+                  mb: 4,
+                }}
+              >
+                PROFILE
+              </Typography>
+
+              <Typography
+                sx={{
+                  color: 'rgba(224,224,224,0.65)',
+                  fontSize: '0.875rem',
+                  lineHeight: 1.9,
+                  mb: 5,
+                  wordBreak: 'keep-all',
+                }}
+              >
+                {aboutMeData.basicInfo.description}
+              </Typography>
+
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {infoRows.map(({ label, value }) => (
+                  <Box key={label}>
+                    <Box
+                      sx={{
+                        borderTop: '1px solid rgba(224,224,224,0.07)',
+                        py: 2.5,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 0.75,
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          color: 'rgba(224,224,224,0.25)',
+                          fontSize: '0.7rem',
+                          letterSpacing: 2,
+                          fontWeight: 600,
+                        }}
+                      >
+                        {label}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: '#E0E0E0',
+                          fontSize: '0.875rem',
+                          wordBreak: 'keep-all',
+                        }}
+                      >
+                        {value}
+                      </Typography>
+                    </Box>
+                  </Box>
+                ))}
+                <Box sx={{ borderTop: '1px solid rgba(224,224,224,0.07)' }} />
+              </Box>
+            </Box>
+          </Grid>
+
+          {/* ── 우측: 콘텐츠 섹션 아코디언 ── */}
+          <Grid item xs={12} md={8}>
+            <Box>
+              {aboutMeData.sections.map((section) => (
+                <Accordion
+                  key={section.id}
+                  expanded={expanded === section.id}
+                  onChange={handleChange(section.id)}
+                  disableGutters
+                  elevation={0}
+                  sx={{
+                    backgroundColor: 'transparent',
+                    borderTop: '1px solid rgba(224,224,224,0.08)',
+                    '&:last-of-type': {
+                      borderBottom: '1px solid rgba(224,224,224,0.08)',
+                    },
+                    '&::before': { display: 'none' },
+                  }}
+                >
+                  <AccordionSummary
+                    expandIcon={
+                      <ExpandMoreIcon
+                        sx={{
+                          color: expanded === section.id ? '#C4E038' : 'rgba(224,224,224,0.3)',
+                          transition: 'color 0.2s',
+                        }}
+                      />
+                    }
+                    sx={{
+                      px: 0,
+                      py: 3,
+                      minHeight: 'unset',
+                      '& .MuiAccordionSummary-content': { my: 0 },
+                      '&:hover .section-title': { color: '#C4E038' },
+                    }}
+                  >
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                      <Typography
+                        className="section-title"
+                        sx={{
+                          color: expanded === section.id ? '#C4E038' : '#E0E0E0',
+                          fontWeight: 700,
+                          fontSize: { xs: '1.25rem', md: '1.5rem' },
+                          letterSpacing: '-0.01em',
+                          transition: 'color 0.2s',
+                        }}
+                      >
+                        {section.title}
+                      </Typography>
+                      {section.showInHome && (
+                        <Box
+                          sx={{
+                            px: 1,
+                            py: 0.25,
+                            border: '1px solid rgba(196,224,56,0.25)',
+                            color: 'rgba(196,224,56,0.55)',
+                            fontSize: '0.65rem',
+                            letterSpacing: 1,
+                            fontWeight: 600,
+                            lineHeight: 1.6,
+                          }}
+                        >
+                          HOME
+                        </Box>
+                      )}
+                    </Box>
+                  </AccordionSummary>
+
+                  <AccordionDetails sx={{ px: 0, pb: 4, pt: 0 }}>
+                    <Typography
+                      sx={{
+                        color: 'rgba(224,224,224,0.6)',
+                        fontSize: '0.9375rem',
+                        lineHeight: 2,
+                        wordBreak: 'keep-all',
+                        maxWidth: 600,
+                      }}
+                    >
+                      {section.content}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </Box>
+          </Grid>
+
+        </Grid>
       </Container>
     </Box>
   )
