@@ -11,7 +11,16 @@ export default function Navbar() {
   const location = useLocation()
 
   return (
-    <AppBar position="fixed">
+    <AppBar
+      position="fixed"
+      sx={{
+        backgroundColor: 'rgba(14, 14, 14, 0.55)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+        boxShadow: 'none',
+      }}
+    >
       <Toolbar sx={{ maxWidth: 1200, width: '100%', mx: 'auto', px: { xs: 2, md: 4 } }}>
         <Typography
           component={Link}
