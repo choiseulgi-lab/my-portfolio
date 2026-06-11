@@ -277,8 +277,13 @@ export default function AboutMe() {
             {/* ── Skills 섹션 ── */}
             <Box sx={{ mt: { xs: 6, md: 8 } }}>
               <Typography
-                variant="overline"
-                sx={{ color: '#C4E038', letterSpacing: 0, mb: 5, display: 'block' }}
+                sx={{
+                  color: '#E0E0E0',
+                  fontWeight: 700,
+                  fontSize: { xs: '1.25rem', md: '1.5rem' },
+                  letterSpacing: '-0.01em',
+                  mb: 3,
+                }}
               >
                 Skills
               </Typography>
