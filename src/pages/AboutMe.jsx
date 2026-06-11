@@ -10,12 +10,16 @@ const aboutMeData = {
   basicInfo: {
     name: '최슬기',
     role: 'UI/UX Designer',
-    description: '1년간의 편집디자인 경험을 바탕으로 사용자가 이해하기 쉬운 인터페이스를 설계합니다.',
-    experience: '편집디자인 (2024. 06 ~ 2025. 12)',
+    description: '복잡한 정보를 쉽고 명확하게 전달합니다.',
+    work: [
+      '2024. 06 ~ 2025. 12  네오시스템 (기획 및 디자인)',
+      '2016. 01 ~ 2021. 10  국립수산과학원 연구원',
+    ],
     tools: 'Figma · Photoshop · Illustrator',
     education: [
-      '2026. 7.  전남대학교 수산과학과 (수중음향학 전공)',
-      '2023. 12.  그린컴퓨터 아카데미 편집디자인양성과정 수료',
+      '2026. 07.  SBS아카데미컴퓨터아트학원 \'웹디자이너 실무자 양성과정\' 수료',
+      '2023. 12.  그린컴퓨터 아카데미 \'디지털 편집디자인 인재 양성과정\' 수료',
+      '2016. 02.  전남대학교 수산과학과 졸업',
     ],
     certification: [
       '2023. 11  GTQ 일러스트 1급',
@@ -58,7 +62,7 @@ const skills = [
 ]
 
 const infoRows = [
-  { label: 'EXPERIENCE', value: aboutMeData.basicInfo.experience },
+  { label: 'WORK', value: aboutMeData.basicInfo.work },
   { label: 'TOOLS', value: aboutMeData.basicInfo.tools },
   { label: 'EDUCATION', value: aboutMeData.basicInfo.education },
   { label: 'CERTIFICATION', value: aboutMeData.basicInfo.certification },
