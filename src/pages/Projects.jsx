@@ -68,6 +68,9 @@ function ProjectCard({ project }) {
       onMouseLeave={handleMouseLeave}
       onClick={handleCardClick}
       sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
         borderRadius: '12px',
         backgroundColor: '#1E1E1E',
         border: '1px solid #2A2A2A',
@@ -80,7 +83,6 @@ function ProjectCard({ project }) {
           : '0 2px 8px rgba(0,0,0,0.25)',
         willChange: 'transform',
         '&:active': {
-          /* 모바일 터치 피드백 */
           backgroundColor: isTouchDevice() ? '#222222' : '#1E1E1E',
         },
       }}
@@ -176,7 +178,7 @@ function ProjectCard({ project }) {
       </Box>
 
       {/* 카드 본문 */}
-      <Box sx={{ p: 2.5 }}>
+      <Box sx={{ p: 2.5, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
         <Typography
           sx={{
             color: '#FFFFFF',
@@ -229,6 +231,8 @@ function ProjectCard({ project }) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            mt: 'auto',
+            pt: 1,
           }}
         >
           {project.duration && (
@@ -310,7 +314,7 @@ export default function Projects() {
         {!loading && (
           <Grid container spacing={3}>
             {projects.map((project) => (
-              <Grid item xs={12} sm={6} md={4} key={project.id}>
+              <Grid item xs={12} sm={6} md={4} key={project.id} sx={{ display: 'flex' }}>
                 <ProjectCard project={project} />
               </Grid>
             ))}
