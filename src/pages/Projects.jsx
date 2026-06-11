@@ -68,7 +68,7 @@ function ProjectCard({ project }) {
       onMouseLeave={handleMouseLeave}
       onClick={handleCardClick}
       sx={{
-        height: '100%',
+        flex: 1,
         display: 'flex',
         flexDirection: 'column',
         borderRadius: '12px',
@@ -314,7 +314,7 @@ export default function Projects() {
         {!loading && (
           <Grid container spacing={3}>
             {projects.map((project) => (
-              <Grid item xs={12} sm={6} md={4} key={project.id} sx={{ display: 'flex' }}>
+              <Grid item xs={12} sm={6} md={4} key={project.id} sx={{ display: 'flex', flexDirection: 'column' }}>
                 <ProjectCard project={project} />
               </Grid>
             ))}
