@@ -84,7 +84,7 @@ export default function AboutMe() {
         pb: { xs: 10, md: 14 },
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl" sx={{ px: { xs: 3, md: 5 } }}>
 
         {/* ── 페이지 헤더 ── */}
         <Box sx={{ mb: { xs: 8, md: 12 } }}>
