@@ -213,36 +213,18 @@ export default function AboutMe() {
                       '&:hover .section-title': { color: '#C4E038' },
                     }}
                   >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                      <Typography
-                        className="section-title"
-                        sx={{
-                          color: expanded === section.id ? '#C4E038' : '#E0E0E0',
-                          fontWeight: 700,
-                          fontSize: { xs: '1.25rem', md: '1.5rem' },
-                          letterSpacing: '-0.01em',
-                          transition: 'color 0.2s',
-                        }}
-                      >
-                        {section.title}
-                      </Typography>
-                      {section.showInHome && (
-                        <Box
-                          sx={{
-                            px: 1,
-                            py: 0.25,
-                            border: '1px solid rgba(196,224,56,0.25)',
-                            color: 'rgba(196,224,56,0.55)',
-                            fontSize: '0.65rem',
-                            letterSpacing: 1,
-                            fontWeight: 600,
-                            lineHeight: 1.6,
-                          }}
-                        >
-                          HOME
-                        </Box>
-                      )}
-                    </Box>
+                    <Typography
+                      className="section-title"
+                      sx={{
+                        color: expanded === section.id ? '#C4E038' : '#E0E0E0',
+                        fontWeight: 700,
+                        fontSize: { xs: '1.25rem', md: '1.5rem' },
+                        letterSpacing: '-0.01em',
+                        transition: 'color 0.2s',
+                      }}
+                    >
+                      {section.title}
+                    </Typography>
                   </AccordionSummary>
 
                   <AccordionDetails sx={{ px: 0, pb: 4, pt: 0 }}>
