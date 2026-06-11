@@ -11,7 +11,7 @@ const aboutMeData = {
     name: '최슬기',
     role: 'UI/UX Designer',
     description: '1년간의 편집디자인 경험을 바탕으로 사용자가 이해하기 쉬운 인터페이스를 설계합니다.',
-    experience: '1 Year',
+    experience: '편집디자인 (2024. 06 ~ 2025. 12)',
     tools: 'Figma · Photoshop · Illustrator',
     education: '전남대학교 수산과학과 (수중음향학 전공)',
   },
