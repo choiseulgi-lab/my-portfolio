@@ -13,7 +13,17 @@ const aboutMeData = {
     description: '1년간의 편집디자인 경험을 바탕으로 사용자가 이해하기 쉬운 인터페이스를 설계합니다.',
     experience: '편집디자인 (2024. 06 ~ 2025. 12)',
     tools: 'Figma · Photoshop · Illustrator',
-    education: '전남대학교 수산과학과 (수중음향학 전공)',
+    education: [
+      '전남대학교 수산과학과 (수중음향학 전공) · 2026. 7.',
+      '그린컴퓨터 아카데미 편집디자인양성과정 수료 · 2023. 12.',
+    ],
+    certification: [
+      '2023. 11  GTQ 일러스트 1급',
+      '2023. 11  GTQ 포토샵 1급',
+      '2023. 12  GTQ 인디자인 1급',
+      '2013. 12  사무자동화산업기사',
+      '2011. 02  운전면허 2종 보통',
+    ],
   },
   sections: [
     {
@@ -44,6 +54,7 @@ const infoRows = [
   { label: 'EXPERIENCE', value: aboutMeData.basicInfo.experience },
   { label: 'TOOLS', value: aboutMeData.basicInfo.tools },
   { label: 'EDUCATION', value: aboutMeData.basicInfo.education },
+  { label: 'CERTIFICATION', value: aboutMeData.basicInfo.certification },
 ]
 
 export default function AboutMe() {
@@ -160,15 +171,24 @@ export default function AboutMe() {
                       >
                         {label}
                       </Typography>
-                      <Typography
-                        sx={{
-                          color: '#E0E0E0',
-                          fontSize: '0.875rem',
-                          wordBreak: 'keep-all',
-                        }}
-                      >
-                        {value}
-                      </Typography>
+                      {Array.isArray(value) ? (
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75 }}>
+                          {value.map((item, i) => (
+                            <Typography
+                              key={i}
+                              sx={{ color: '#E0E0E0', fontSize: '0.875rem', wordBreak: 'keep-all' }}
+                            >
+                              {item}
+                            </Typography>
+                          ))}
+                        </Box>
+                      ) : (
+                        <Typography
+                          sx={{ color: '#E0E0E0', fontSize: '0.875rem', wordBreak: 'keep-all' }}
+                        >
+                          {value}
+                        </Typography>
+                      )}
                     </Box>
                   </Box>
                 ))}
