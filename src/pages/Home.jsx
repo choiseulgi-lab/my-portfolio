@@ -13,7 +13,7 @@ import { supabase } from '../lib/supabase'
 function SgLineAnimation() {
   return (
     <svg
-      viewBox="0 0 900 120"
+      viewBox="0 0 900 130"
       xmlns="http://www.w3.org/2000/svg"
       style={{ width: '100%', height: 'auto', display: 'block' }}
       aria-hidden="true"
@@ -28,47 +28,52 @@ function SgLineAnimation() {
             to   { opacity: 1; transform: translateX(0px); }
           }
           .sg-path {
-            stroke-dasharray: 2800;
-            stroke-dashoffset: 2800;
-            animation: drawSgPath 2.2s ease-in-out forwards 0.4s;
+            stroke-dasharray: 3200;
+            stroke-dashoffset: 3200;
+            animation: drawSgPath 2.4s ease-in-out forwards 0.4s;
           }
           .sg-sun {
             opacity: 0;
             transform-box: fill-box;
             transform-origin: center;
-            animation: rollIn 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards 2.8s;
+            animation: rollIn 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards 3s;
           }
           .sg-dot {
             opacity: 0;
             transform-box: fill-box;
             transform-origin: center;
-            animation: rollIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards 3.1s;
+            animation: rollIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards 3.3s;
           }
         `}</style>
       </defs>
 
-      {/* 'sg' 를 한 획으로 쓰듯 그린 패스 */}
+      {/* sg 한 획: s → 태양 언덕 → g(큰 루프) → 꼬리 */}
       <path
         className="sg-path"
-        d="M 0 65
-           L 45 65
-           C 60 65, 75 50, 90 40
-           C 105 30, 125 30, 140 40
-           C 155 50, 160 65, 165 75
-           C 170 85, 185 98, 205 100
-           C 225 102, 245 95, 258 82
-           C 270 72, 272 65, 278 65
-           L 300 65
-           C 318 65, 335 52, 352 42
-           C 368 32, 390 28, 412 33
-           C 434 38, 448 55, 448 72
-           C 448 90, 434 105, 412 108
-           C 390 112, 368 105, 356 90
-           C 344 76, 348 65, 362 65
-           L 390 65
-           C 430 65, 500 58, 570 66
-           C 640 74, 720 62, 800 65
-           L 900 65"
+        d="M 0 72
+           L 40 72
+           C 56 72, 70 56, 84 44
+           C 98 32, 118 26, 138 32
+           C 158 38, 166 58, 168 72
+           C 170 84, 180 104, 200 112
+           C 220 120, 242 112, 256 98
+           C 266 88, 268 78, 278 74
+           L 300 72
+           C 314 72, 326 54, 338 46
+           C 350 38, 362 38, 374 46
+           C 386 54, 390 66, 392 72
+           L 412 72
+           C 430 72, 452 48, 476 32
+           C 500 16, 532 10, 564 14
+           C 596 18, 622 42, 628 70
+           C 634 98, 618 124, 594 132
+           C 570 140, 538 136, 516 118
+           C 494 100, 490 78, 506 66
+           L 534 64
+           L 558 70
+           L 574 72
+           C 618 72, 700 64, 780 70
+           C 860 76, 890 70, 900 72"
         fill="none"
         stroke="rgba(255,255,255,0.75)"
         strokeWidth="2"
@@ -76,10 +81,10 @@ function SgLineAnimation() {
         strokeLinejoin="round"
       />
 
-      {/* 주황 태양 — s와 g 연결 지점 위 */}
-      <circle className="sg-sun" cx="289" cy="50" r="13" fill="#E8734A" />
+      {/* 주황 태양 — s·g 사이 언덕 정점 */}
+      <circle className="sg-sun" cx="336" cy="34" r="14" fill="#E8734A" />
       {/* 작은 흰 점 */}
-      <circle className="sg-dot" cx="289" cy="33" r="4.5" fill="white" />
+      <circle className="sg-dot" cx="336" cy="16" r="5" fill="white" />
     </svg>
   )
 }
@@ -253,12 +258,12 @@ function HeroSection() {
       <Box
         sx={{
           position: 'absolute',
-          bottom: 90,
+          top: '70%',
           left: 0,
           right: 0,
           zIndex: 0,
           pointerEvents: 'none',
-          px: { xs: 2, md: 6 },
+          px: { xs: 3, md: 8 },
         }}
       >
         <SgLineAnimation />
