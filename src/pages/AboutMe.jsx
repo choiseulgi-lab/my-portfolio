@@ -11,8 +11,8 @@ const aboutMeData = {
     name: '최슬기',
     role: 'UI/UX Designer',
     work: [
-      '2024. 06 ~ 2025. 12  네오시스템 (기획 및 디자인)',
-      '2016. 01 ~ 2021. 10  국립수산과학원 연구원',
+      { date: '2024. 06 ~ 2025. 12', content: '네오시스템 (기획 및 디자인)' },
+      { date: '2016. 01 ~ 2021. 10', content: '국립수산과학원 연구원' },
     ],
     education: [
       { date: '2026. 07', content: "SBS아카데미 '웹디자이너 실무자 양성과정' 수료" },
@@ -20,11 +20,11 @@ const aboutMeData = {
       { date: '2016. 02', content: '전남대학교 수산과학과 졸업' },
     ],
     certification: [
-      '2024. 07  컴퓨터그래픽스운용기능사',
-      '2023. 12  GTQ 인디자인 1급',
-      '2023. 11  GTQ 포토샵 1급',
-      '2023. 11  GTQ 일러스트 1급',
-      '2013. 12  사무자동화산업기사',
+      { date: '2024. 07', content: '컴퓨터그래픽스운용기능사' },
+      { date: '2023. 12', content: 'GTQ 인디자인 1급' },
+      { date: '2023. 11', content: 'GTQ 포토샵 1급' },
+      { date: '2023. 11', content: 'GTQ 일러스트 1급' },
+      { date: '2013. 12', content: '사무자동화산업기사' },
     ],
   },
   sections: [
@@ -257,7 +257,12 @@ export default function AboutMe() {
                 <Typography component="span" sx={labelSx}>WORK</Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                   {aboutMeData.basicInfo.work.map((item, i) => (
-                    <Typography key={i} sx={itemSx}>{item}</Typography>
+                    <Box key={i} sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: { xs: 0.25, md: 2 } }}>
+                      <Typography sx={{ ...itemSx, color: 'rgba(224,224,224,0.4)', flexShrink: 0 }}>
+                        {item.date}
+                      </Typography>
+                      <Typography sx={itemSx}>{item.content}</Typography>
+                    </Box>
                   ))}
                 </Box>
               </Box>
@@ -267,7 +272,12 @@ export default function AboutMe() {
                 <Typography component="span" sx={labelSx}>CERTIFICATION</Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.75 }}>
                   {aboutMeData.basicInfo.certification.map((item, i) => (
-                    <Typography key={i} sx={itemSx}>{item}</Typography>
+                    <Box key={i} sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: { xs: 0.25, md: 2 } }}>
+                      <Typography sx={{ ...itemSx, color: 'rgba(224,224,224,0.4)', flexShrink: 0 }}>
+                        {item.date}
+                      </Typography>
+                      <Typography sx={itemSx}>{item.content}</Typography>
+                    </Box>
                   ))}
                 </Box>
               </Box>
