@@ -31,10 +31,10 @@ function HeroSection() {
           Welcome
         </Typography>
         <Typography variant="h2" sx={{ color: 'var(--color-text-primary)', fontWeight: 700, mb: 3 }}>
-          여기는 Hero 섹션입니다.
+          최슬기
         </Typography>
         <Typography variant="h6" sx={{ color: 'var(--color-text-muted)', mb: 5, lineHeight: 1.8 }}>
-          메인 비주얼, 이름, 간단 소개가 들어갈 예정입니다.
+          보기 좋은 화면을 넘어, 사용자의 불편함을 직관적으로 해결하는 디자이너
         </Typography>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
           <Button
