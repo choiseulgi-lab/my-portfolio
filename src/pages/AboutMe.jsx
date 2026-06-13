@@ -131,13 +131,14 @@ export default function AboutMe() {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}>
 
               {/* Profile */}
-              <Box sx={cardSx}>
+              <Box sx={{ ...cardSx, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                 <Typography component="span" sx={labelSx}>PROFILE</Typography>
                 {/* 사진 영역 — 실제 사진으로 교체 시 img 태그로 변경 */}
                 <Box
                   sx={{
                     width: '100%',
-                    height: 160,
+                    flexGrow: 1,
+                    minHeight: 200,
                     backgroundColor: '#242424',
                     borderRadius: '8px',
                     display: 'flex',
@@ -165,12 +166,13 @@ export default function AboutMe() {
                     border: '1px solid rgba(196,224,56,0.3)',
                     fontWeight: 600,
                     fontSize: '0.75rem',
+                    alignSelf: 'flex-start',
                   }}
                 />
               </Box>
 
               {/* Skills */}
-              <Box sx={{ ...cardSx, flexGrow: 1 }}>
+              <Box sx={cardSx}>
                 <Typography component="span" sx={labelSx}>SKILLS</Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
                   {skills.map(({ name, tooltip }) => (
