@@ -314,6 +314,23 @@ export default function AboutMe() {
 
         </Grid>
 
+        {/* ── 아코디언 섹션 구분 ── */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mb: { xs: 6, md: 8 }, mt: { xs: 2, md: 4 } }}>
+          <Box sx={{ flex: 1, height: '1px', backgroundColor: 'rgba(224,224,224,0.08)' }} />
+          <Typography
+            sx={{
+              color: 'rgba(224,224,224,0.25)',
+              fontSize: '0.68rem',
+              letterSpacing: 3,
+              fontWeight: 700,
+              flexShrink: 0,
+            }}
+          >
+            MORE ABOUT ME
+          </Typography>
+          <Box sx={{ flex: 1, height: '1px', backgroundColor: 'rgba(224,224,224,0.08)' }} />
+        </Box>
+
         {/* ── 아코디언 섹션 ── */}
         <Box>
           {aboutMeData.sections.map((section) => (
