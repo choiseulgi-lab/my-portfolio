@@ -194,43 +194,113 @@ function HeroSection() {
 }
 
 /* ── 2. About Me 섹션 ─────────────────────────────────────── */
+const aboutSections = [
+  {
+    title: 'Why Design',
+    content: '사용자가 정보를 쉽고 편안하게 이해할 수 있는 화면을 만드는 것에 흥미를 느껴 UI/UX 디자인을 시작했습니다. 피그마를 활용해 다양한 서비스를 기획하고 설계하며, 사용자의 관점에서 더 쉽고 직관적인 경험을 만드는 방법을 꾸준히 고민하고 있습니다. 보기 좋은 화면을 넘어 문제를 해결하는 디자인을 만드는 것이 저의 목표입니다.',
+  },
+  {
+    title: 'How I Design',
+    content: '저는 모든 디자인에는 명확한 이유가 있어야 한다고 생각합니다. 정보의 우선순위를 분명하게 전달하고, 사용자가 자연스럽게 흐름을 따라갈 수 있도록 설계하는 것을 중요하게 여깁니다. 작은 간격과 정렬, 터치 영역까지도 근거를 가지고 결정하며 일관성 있는 사용자 경험을 만드는 데 집중합니다.',
+  },
+]
+
 function AboutSection() {
   return (
     <Box
       sx={{
-        py: 12,
-        backgroundColor: 'var(--color-bg-secondary)',
-        borderBottom: '1px solid var(--color-border-light)',
+        py: { xs: 10, md: 14 },
+        backgroundColor: '#111111',
+        borderBottom: '1px solid rgba(255,255,255,0.05)',
       }}
     >
-      <Container maxWidth="md" sx={{ textAlign: 'center' }}>
-        <Typography
-          variant="overline"
-          sx={{ color: 'var(--color-primary-dark)', letterSpacing: 0, mb: 2, display: 'block' }}
-        >
-          About Me
-        </Typography>
-        <Typography variant="h3" sx={{ color: 'var(--color-text-secondary)', fontWeight: 700, mb: 4 }}>
-          여기는 About Me 섹션입니다.
-        </Typography>
-        <Typography variant="body1" sx={{ color: '#555555', lineHeight: 2, mb: 5 }}>
-          간단한 자기소개와 '더 알아보기' 버튼이 들어갈 예정입니다.
-        </Typography>
-        <Button
-          variant="contained"
-          size="large"
-          component={Link}
-          to="/about"
-          sx={{
-            backgroundColor: 'var(--color-button-primary)',
-            color: 'var(--color-text-inverse)',
-            fontWeight: 700,
-            px: 4,
-            '&:hover': { backgroundColor: 'var(--color-button-hover)' },
-          }}
-        >
-          더 알아보기
-        </Button>
+      <Container maxWidth="lg" sx={{ px: { xs: 3, md: 5 } }}>
+
+        {/* 섹션 헤더 */}
+        <Box sx={{ mb: { xs: 6, md: 8 } }}>
+          <Typography
+            variant="overline"
+            sx={{ color: '#C4E038', letterSpacing: 0, mb: 2, display: 'block' }}
+          >
+            About Me
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: { xs: '2rem', md: '2.75rem' },
+              fontWeight: 700,
+              color: '#E0E0E0',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.2,
+            }}
+          >
+            최슬기를 소개합니다
+          </Typography>
+        </Box>
+
+        {/* Why Design + How I Design 카드 */}
+        <Grid container spacing={3} sx={{ mb: { xs: 6, md: 8 } }}>
+          {aboutSections.map(({ title, content }) => (
+            <Grid item xs={12} md={6} key={title}>
+              <Box
+                sx={{
+                  backgroundColor: '#1A1A1A',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  borderRadius: '12px',
+                  p: { xs: 3, md: 4 },
+                  height: '100%',
+                  transition: 'border-color 0.2s',
+                  '&:hover': { borderColor: 'rgba(196,224,56,0.25)' },
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: '#C4E038',
+                    fontSize: '0.7rem',
+                    letterSpacing: 3,
+                    fontWeight: 700,
+                    mb: 2.5,
+                  }}
+                >
+                  {title.toUpperCase()}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: 'rgba(224,224,224,0.65)',
+                    fontSize: '0.9375rem',
+                    lineHeight: 2,
+                    wordBreak: 'keep-all',
+                  }}
+                >
+                  {content}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+
+        {/* 더 알아보기 버튼 */}
+        <Box>
+          <Button
+            variant="outlined"
+            size="large"
+            component={Link}
+            to="/about"
+            sx={{
+              borderColor: 'rgba(196,224,56,0.4)',
+              color: '#C4E038',
+              px: 4,
+              transition: 'all 0.2s',
+              '&:hover': {
+                borderColor: '#C4E038',
+                backgroundColor: 'rgba(196,224,56,0.08)',
+                transform: 'translateY(-2px)',
+              },
+            }}
+          >
+            더 알아보기
+          </Button>
+        </Box>
+
       </Container>
     </Box>
   )
