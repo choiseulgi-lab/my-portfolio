@@ -15,9 +15,9 @@ const aboutMeData = {
       '2016. 01 ~ 2021. 10  국립수산과학원 연구원',
     ],
     education: [
-      "2026. 07.  SBS아카데미 '웹디자이너 실무자 양성과정' 수료",
-      "2023. 12.  그린AI캠퍼스 '디지털 편집디자인 인재 양성과정' 수료",
-      '2016. 02.  전남대학교 수산과학과 졸업',
+      { date: '2026. 07', content: "SBS아카데미 '웹디자이너 실무자 양성과정' 수료" },
+      { date: '2023. 12', content: "그린AI캠퍼스 '디지털 편집디자인 인재 양성과정' 수료" },
+      { date: '2016. 02', content: '전남대학교 수산과학과 졸업' },
     ],
     certification: [
       '2024. 07  컴퓨터그래픽스운용기능사',
@@ -242,7 +242,12 @@ export default function AboutMe() {
                 <Typography component="span" sx={labelSx}>EDUCATION</Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                   {aboutMeData.basicInfo.education.map((item, i) => (
-                    <Typography key={i} sx={itemSx}>{item}</Typography>
+                    <Box key={i} sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: { xs: 0.25, md: 2 } }}>
+                      <Typography sx={{ ...itemSx, color: 'rgba(224,224,224,0.4)', flexShrink: 0 }}>
+                        {item.date}
+                      </Typography>
+                      <Typography sx={itemSx}>{item.content}</Typography>
+                    </Box>
                   ))}
                 </Box>
               </Box>
