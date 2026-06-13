@@ -31,14 +31,13 @@ function HeroSection() {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
+        minHeight: 'calc(100vh - 64px)',
+        marginTop: '64px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'var(--color-bg-primary)',
         borderBottom: '1px solid var(--color-border-dark)',
-        pt: 8,
-        pb: 8,
         position: 'relative',
         overflow: 'hidden',
         '@keyframes fadeInUp': {
