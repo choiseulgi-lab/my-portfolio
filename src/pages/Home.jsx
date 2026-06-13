@@ -258,11 +258,13 @@ function HeroSection() {
       <Box
         sx={{
           position: 'absolute',
-          top: '70%',
+          top: '50%',
+          transform: 'translateY(-50%)',
           left: 0,
           right: 0,
           zIndex: 0,
           pointerEvents: 'none',
+          opacity: 0.22,
           px: { xs: 3, md: 8 },
         }}
       >
