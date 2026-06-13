@@ -156,7 +156,7 @@ function HeroSection() {
               '&:hover': { backgroundColor: 'var(--color-button-hover)', transform: 'translateY(-2px)', boxShadow: '0 8px 20px rgba(196,224,56,0.25)' },
             }}
           >
-            Projects 보기
+            PROJECTS
           </Button>
           <Button
             variant="outlined"
