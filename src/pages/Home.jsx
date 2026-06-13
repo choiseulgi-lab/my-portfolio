@@ -176,8 +176,7 @@ function HeroSection() {
           <Button
             variant="outlined"
             size="large"
-            component="a"
-            href="#contact"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             sx={{
               borderColor: 'rgba(224,224,224,0.3)',
               color: 'rgba(224,224,224,0.6)',
