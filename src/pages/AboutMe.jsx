@@ -196,16 +196,20 @@ export default function AboutMe() {
                         label={name}
                         size="medium"
                         sx={{
-                          backgroundColor: tooltip ? 'rgba(196,224,56,0.1)' : 'rgba(224,224,224,0.08)',
-                          color: tooltip ? '#C4E038' : '#E0E0E0',
-                          border: `1px solid ${tooltip ? 'rgba(196,224,56,0.4)' : 'rgba(224,224,224,0.25)'}`,
+                          backgroundColor: 'rgba(224,224,224,0.08)',
+                          color: '#E0E0E0',
+                          border: '1px solid rgba(224,224,224,0.25)',
                           fontWeight: 500,
                           fontSize: '0.875rem',
                           cursor: tooltip ? 'help' : 'default',
                           transition: 'all 0.2s',
-                          '&:hover': {
-                            backgroundColor: tooltip ? 'rgba(196,224,56,0.16)' : 'rgba(224,224,224,0.14)',
-                            borderColor: tooltip ? 'rgba(196,224,56,0.6)' : 'rgba(224,224,224,0.4)',
+                          '&:hover': tooltip ? {
+                            backgroundColor: 'rgba(196,224,56,0.12)',
+                            color: '#C4E038',
+                            borderColor: 'rgba(196,224,56,0.5)',
+                          } : {
+                            backgroundColor: 'rgba(224,224,224,0.14)',
+                            borderColor: 'rgba(224,224,224,0.4)',
                           },
                         }}
                       />
