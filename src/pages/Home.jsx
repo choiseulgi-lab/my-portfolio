@@ -86,22 +86,22 @@ function HeroSection() {
           )}
         </Box>
 
-        {/* 이름 — 그라디언트 텍스트 */}
+        {/* 헤드라인 */}
         <Typography
           sx={{
-            fontSize: { xs: '3.5rem', sm: '5rem', md: '7rem' },
-            fontWeight: 800,
-            letterSpacing: '-0.03em',
-            lineHeight: 1,
-            mb: 3,
-            background: 'linear-gradient(135deg, #E0E0E0 30%, #C4E038 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
+            fontSize: { xs: '1.75rem', sm: '2.25rem', md: '2.75rem' },
+            fontWeight: 700,
+            letterSpacing: '-0.02em',
+            lineHeight: 1.4,
+            color: 'var(--color-text-primary)',
+            mb: 4,
+            wordBreak: 'keep-all',
             animation: 'fadeInUp 0.6s ease 0.3s both',
           }}
         >
-          최슬기
+          보기 좋은 화면을 넘어,<br />
+          사용자의 불편함을 직관적으로<br />
+          해결하는 디자이너
         </Typography>
 
         {/* 포인트 라인 */}
@@ -116,20 +116,21 @@ function HeroSection() {
           }}
         />
 
-        {/* 헤드라인 */}
+        {/* 이름 — 서명처럼 작게 */}
         <Typography
-          variant="h6"
           sx={{
-            color: 'rgba(224,224,224,0.65)',
+            fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.4rem' },
+            fontWeight: 600,
+            letterSpacing: '0.1em',
             mb: 6,
-            lineHeight: 1.9,
-            fontWeight: 400,
-            wordBreak: 'keep-all',
+            background: 'linear-gradient(135deg, #E0E0E0 30%, #C4E038 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
             animation: 'fadeInUp 0.6s ease 0.6s both',
           }}
         >
-          보기 좋은 화면을 넘어,<br />
-          사용자의 불편함을 직관적으로 해결하는 디자이너
+          최슬기
         </Typography>
 
         {/* 버튼 */}
