@@ -93,6 +93,15 @@ export default function AboutMe() {
         backgroundColor: '#0E0E0E',
         pt: { xs: 12, md: 14 },
         pb: { xs: 10, md: 14 },
+        '@keyframes fadeInUp': {
+          from: { opacity: 0, transform: 'translateY(24px)' },
+          to:   { opacity: 1, transform: 'translateY(0)' },
+        },
+        '@keyframes popIn': {
+          '0%':   { transform: 'scale(0.7)', opacity: 0 },
+          '70%':  { transform: 'scale(1.15)' },
+          '100%': { transform: 'scale(1)',   opacity: 1 },
+        },
       }}
     >
       <Container maxWidth="lg" sx={{ px: { xs: 3, md: 5 } }}>
@@ -106,9 +115,21 @@ export default function AboutMe() {
               color: '#E0E0E0',
               letterSpacing: '-0.03em',
               lineHeight: 1.15,
+              animation: 'fadeInUp 0.6s ease 0.1s both',
             }}
           >
-            Hello :D
+            Hello{' '}
+            <Box
+              component="span"
+              sx={{
+                color: '#C4E038',
+                display: 'inline-block',
+                animation: 'popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.6s both',
+                fontSize: { xs: '2.6rem', md: '4.4rem' },
+              }}
+            >
+              :D
+            </Box>
           </Typography>
           <Typography
             sx={{
@@ -116,6 +137,7 @@ export default function AboutMe() {
               fontWeight: 700,
               letterSpacing: '-0.03em',
               lineHeight: 1.15,
+              animation: 'fadeInUp 0.6s ease 0.3s both',
             }}
           >
             <Box component="span" sx={{ color: '#C4E038' }}>I'm </Box>
