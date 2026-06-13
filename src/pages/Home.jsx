@@ -218,10 +218,10 @@ function ProjectsSection() {
             Projects
           </Typography>
           <Typography variant="h3" sx={{ color: 'var(--color-text-primary)', fontWeight: 700, mb: 2 }}>
-            여기는 Projects 섹션입니다.
+            Selected Works
           </Typography>
           <Typography variant="body1" sx={{ color: 'var(--color-text-muted)' }}>
-            대표작 썸네일 3-4개와 '더 보기' 버튼이 들어갈 예정입니다.
+            사용자 관점에서 문제를 발견하고 해결한 프로젝트를 소개합니다.
           </Typography>
         </Box>
         <Grid container spacing={3} justifyContent="center">
@@ -652,7 +652,20 @@ function ContactSection() {
             textAlign: 'center',
           }}
         >
-          같이 일해요
+          Let's Connect
+        </Typography>
+        <Typography
+          sx={{
+            color: 'rgba(224,224,224,0.45)',
+            fontSize: '0.9375rem',
+            textAlign: 'center',
+            mb: 8,
+            mt: -6,
+            wordBreak: 'keep-all',
+            lineHeight: 1.8,
+          }}
+        >
+          더 나은 사용자 경험을 위한 새로운 기회를 기다립니다.
         </Typography>
 
         <Box>
@@ -751,12 +764,12 @@ function GuestbookSection() {
             textAlign: 'center',
           }}
         >
-          방명록
+          Leave a Message
         </Typography>
         <Typography
           sx={{ color: 'rgba(224,224,224,0.35)', fontSize: '0.875rem', textAlign: 'center', mb: 8, wordBreak: 'keep-all' }}
         >
-          방문해주셔서 감사합니다. 한마디 남겨주세요!
+          방문해주셔서 감사합니다. 짧은 인사나 피드백을 남겨주세요.
         </Typography>
 
         <GuestbookForm onSubmitSuccess={() => setRefreshTrigger(p => p + 1)} />
