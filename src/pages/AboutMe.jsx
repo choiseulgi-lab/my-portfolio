@@ -167,8 +167,29 @@ export default function AboutMe() {
                     fontWeight: 600,
                     fontSize: '0.75rem',
                     alignSelf: 'flex-start',
+                    mb: 2.5,
                   }}
                 />
+                <Typography
+                  sx={{
+                    color: 'rgba(224,224,224,0.5)',
+                    fontSize: '0.78rem',
+                    letterSpacing: 0.3,
+                    mb: 1,
+                  }}
+                >
+                  choiseulgi91@naver.com
+                </Typography>
+                <Typography
+                  sx={{
+                    color: 'rgba(224,224,224,0.65)',
+                    fontSize: '0.85rem',
+                    lineHeight: 1.7,
+                    wordBreak: 'keep-all',
+                  }}
+                >
+                  보기 좋은 화면을 넘어,<br />사용자의 불편함을 직관적으로 해결하는 디자이너
+                </Typography>
               </Box>
 
               {/* Skills */}
