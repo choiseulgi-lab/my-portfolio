@@ -2,7 +2,7 @@ import { useState } from 'react'
 import {
   Box, Container, Typography, Grid,
   Accordion, AccordionSummary, AccordionDetails,
-  Chip, LinearProgress, Tooltip,
+  Chip, Tooltip,
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
@@ -55,10 +55,11 @@ const aboutMeData = {
 }
 
 const skills = [
-  { name: 'Illustrator', value: 80, tooltip: '2023. 11  GTQ 일러스트 1급 취득', showInMain: true },
-  { name: 'Figma',       value: 75, tooltip: '',                                 showInMain: true },
-  { name: 'Adobe XD',    value: 70, tooltip: '',                                 showInMain: true },
-  { name: 'Photoshop',   value: 60, tooltip: '2023. 11  GTQ 포토샵 1급 취득',   showInMain: true },
+  { name: 'Figma',        tooltip: '' },
+  { name: 'Illustrator',  tooltip: 'GTQ 일러스트 1급 취득' },
+  { name: 'Photoshop',    tooltip: 'GTQ 포토샵 1급 취득' },
+  { name: 'Adobe XD',     tooltip: '' },
+  { name: 'Indesign',     tooltip: 'GTQ 인디자인 1급 취득' },
 ]
 
 const infoRows = [
@@ -289,11 +290,12 @@ export default function AboutMe() {
               >
                 Skills
               </Typography>
-              {skills.map(({ name, value, tooltip }) => (
-                <Box key={name} sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
+                {skills.map(({ name, tooltip }) => (
                   <Tooltip
+                    key={name}
                     title={tooltip || ''}
-                    placement="top-start"
+                    placement="top"
                     arrow
                     disableHoverListener={!tooltip}
                     componentsProps={{
@@ -308,45 +310,26 @@ export default function AboutMe() {
                       arrow: { sx: { color: '#2A2A2A' } },
                     }}
                   >
-                    <Box
+                    <Chip
+                      label={name}
+                      size="medium"
                       sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        mb: 1.5,
+                        backgroundColor: tooltip ? 'rgba(196,224,56,0.08)' : 'rgba(224,224,224,0.05)',
+                        color: tooltip ? '#C4E038' : 'rgba(224,224,224,0.65)',
+                        border: `1px solid ${tooltip ? 'rgba(196,224,56,0.3)' : 'rgba(224,224,224,0.12)'}`,
+                        fontWeight: tooltip ? 600 : 400,
+                        fontSize: '0.85rem',
                         cursor: tooltip ? 'help' : 'default',
+                        transition: 'all 0.2s',
+                        '&:hover': tooltip ? {
+                          backgroundColor: 'rgba(196,224,56,0.14)',
+                          borderColor: 'rgba(196,224,56,0.5)',
+                        } : {},
                       }}
-                    >
-                      <Typography
-                        sx={{
-                          color: tooltip ? '#E0E0E0' : 'rgba(224,224,224,0.75)',
-                          fontWeight: 500,
-                          fontSize: '0.9375rem',
-                          transition: 'color 0.2s',
-                          '&:hover': tooltip ? { color: '#C4E038' } : {},
-                        }}
-                      >
-                        {name}
-                      </Typography>
-                      <Typography sx={{ color: '#C4E038', fontSize: '0.875rem', fontWeight: 600 }}>
-                        {value}%
-                      </Typography>
-                    </Box>
+                    />
                   </Tooltip>
-                  <LinearProgress
-                    variant="determinate"
-                    value={value}
-                    sx={{
-                      height: 6,
-                      borderRadius: 3,
-                      backgroundColor: 'rgba(255,255,255,0.06)',
-                      '& .MuiLinearProgress-bar': {
-                        background: 'linear-gradient(90deg, #9DB82C, #C4E038)',
-                        borderRadius: 3,
-                      },
-                    }}
-                  />
-                </Box>
-              ))}
+                ))}
+              </Box>
             </Box>
           </Grid>
 
