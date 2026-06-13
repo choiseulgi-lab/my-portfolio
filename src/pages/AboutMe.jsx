@@ -89,7 +89,7 @@ export default function AboutMe() {
       <Container maxWidth="lg" sx={{ px: { xs: 3, md: 5 }, width: '100%' }}>
 
         {/* ── 페이지 헤더 ── */}
-        <Box sx={{ mb: { xs: 8, md: 12 } }}>
+        <Box sx={{ mb: { xs: 8, md: 12 }, textAlign: 'center' }}>
           <Typography
             variant="overline"
             sx={{ color: '#C4E038', letterSpacing: 0, mb: 2, display: 'block' }}
@@ -108,7 +108,7 @@ export default function AboutMe() {
           >
             {aboutMeData.basicInfo.name}
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
             <Chip
               label={aboutMeData.basicInfo.role}
               size="small"
