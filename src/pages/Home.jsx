@@ -173,6 +173,21 @@ function HeroSection() {
           >
             About Me
           </Button>
+          <Button
+            variant="outlined"
+            size="large"
+            component="a"
+            href="#contact"
+            sx={{
+              borderColor: 'rgba(224,224,224,0.3)',
+              color: 'rgba(224,224,224,0.6)',
+              px: 4,
+              transition: 'all 0.2s ease',
+              '&:hover': { borderColor: '#E0E0E0', color: '#E0E0E0', backgroundColor: 'rgba(224,224,224,0.06)', transform: 'translateY(-2px)' },
+            }}
+          >
+            CONTACT
+          </Button>
         </Stack>
       </Container>
 
