@@ -99,9 +99,8 @@ function HeroSection() {
             animation: 'fadeInUp 0.6s ease 0.3s both',
           }}
         >
-          보기 좋은 화면을 넘어,<br />
-          사용자의 불편함을 직관적으로<br />
-          해결하는 디자이너
+          보기 좋은 화면을 넘어<br />
+          사용하기 편한 경험을 만드는 디자이너
         </Typography>
 
         {/* 포인트 라인 */}
