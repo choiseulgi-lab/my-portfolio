@@ -189,33 +189,6 @@ function HeroSection() {
         </Stack>
       </Container>
 
-      {/* 스크롤 유도 */}
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: 36,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 1,
-          zIndex: 1,
-          animation: 'fadeInUp 0.6s ease 1.2s both',
-        }}
-      >
-        <Typography sx={{ color: 'rgba(224,224,224,0.2)', fontSize: '0.6rem', letterSpacing: 4, fontWeight: 600 }}>
-          SCROLL
-        </Typography>
-        <Box
-          sx={{
-            width: '1px',
-            height: 44,
-            background: 'linear-gradient(180deg, rgba(196,224,56,0.6) 0%, rgba(196,224,56,0) 100%)',
-            animation: 'bounceY 1.8s ease-in-out infinite',
-          }}
-        />
-      </Box>
     </Box>
   )
 }
