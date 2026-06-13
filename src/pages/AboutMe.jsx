@@ -123,138 +123,138 @@ export default function AboutMe() {
           </Typography>
         </Box>
 
-        {/* ── 2×2 그리드 ── */}
-        <Grid container spacing={2} sx={{ mb: 2 }}>
+        {/* ── 2컬럼 레이아웃 ── */}
+        <Grid container spacing={2} sx={{ mb: { xs: 6, md: 8 } }}>
 
-          {/* Profile */}
+          {/* 좌측: Profile + Certification */}
           <Grid item xs={12} md={6}>
-            <Box sx={cardSx}>
-              <Typography component="span" sx={labelSx}>PROFILE</Typography>
-              {/* 사진 영역 — 실제 사진으로 교체 시 img 태그로 변경 */}
-              <Box
-                sx={{
-                  width: '100%',
-                  aspectRatio: '4 / 3',
-                  backgroundColor: '#242424',
-                  borderRadius: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  border: '1px dashed rgba(255,255,255,0.07)',
-                  mb: 3,
-                }}
-              >
-                <Typography sx={{ color: 'rgba(255,255,255,0.12)', fontSize: '0.75rem', letterSpacing: 3 }}>
-                  PHOTO
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+
+              {/* Profile */}
+              <Box sx={cardSx}>
+                <Typography component="span" sx={labelSx}>PROFILE</Typography>
+                {/* 사진 영역 — 실제 사진으로 교체 시 img 태그로 변경 */}
+                <Box
+                  sx={{
+                    width: '100%',
+                    aspectRatio: '4 / 3',
+                    backgroundColor: '#242424',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: '1px dashed rgba(255,255,255,0.07)',
+                    mb: 3,
+                  }}
+                >
+                  <Typography sx={{ color: 'rgba(255,255,255,0.12)', fontSize: '0.75rem', letterSpacing: 3 }}>
+                    PHOTO
+                  </Typography>
+                </Box>
+                <Typography
+                  sx={{ color: '#E0E0E0', fontWeight: 700, fontSize: '1.5rem', letterSpacing: '-0.02em', mb: 1 }}
+                >
+                  {aboutMeData.basicInfo.name}
                 </Typography>
+                <Chip
+                  label={aboutMeData.basicInfo.role}
+                  size="small"
+                  sx={{
+                    backgroundColor: 'rgba(196,224,56,0.1)',
+                    color: '#C4E038',
+                    border: '1px solid rgba(196,224,56,0.3)',
+                    fontWeight: 600,
+                    fontSize: '0.75rem',
+                  }}
+                />
               </Box>
-              <Typography
-                sx={{
-                  color: '#E0E0E0',
-                  fontWeight: 700,
-                  fontSize: '1.5rem',
-                  letterSpacing: '-0.02em',
-                  mb: 1,
-                }}
-              >
-                {aboutMeData.basicInfo.name}
-              </Typography>
-              <Chip
-                label={aboutMeData.basicInfo.role}
-                size="small"
-                sx={{
-                  backgroundColor: 'rgba(196,224,56,0.1)',
-                  color: '#C4E038',
-                  border: '1px solid rgba(196,224,56,0.3)',
-                  fontWeight: 600,
-                  fontSize: '0.75rem',
-                }}
-              />
+
+              {/* Certification */}
+              <Box sx={cardSx}>
+                <Typography component="span" sx={labelSx}>CERTIFICATION</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.75 }}>
+                  {aboutMeData.basicInfo.certification.map((item, i) => (
+                    <Typography key={i} sx={itemSx}>{item}</Typography>
+                  ))}
+                </Box>
+              </Box>
+
             </Box>
           </Grid>
 
-          {/* Education */}
+          {/* 우측: Education + Work + Skills */}
           <Grid item xs={12} md={6}>
-            <Box sx={cardSx}>
-              <Typography component="span" sx={labelSx}>EDUCATION</Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-                {aboutMeData.basicInfo.education.map((item, i) => (
-                  <Typography key={i} sx={itemSx}>{item}</Typography>
-                ))}
-              </Box>
-            </Box>
-          </Grid>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
 
-          {/* Certification */}
-          <Grid item xs={12} md={6}>
-            <Box sx={cardSx}>
-              <Typography component="span" sx={labelSx}>CERTIFICATION</Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.75 }}>
-                {aboutMeData.basicInfo.certification.map((item, i) => (
-                  <Typography key={i} sx={itemSx}>{item}</Typography>
-                ))}
+              {/* Education */}
+              <Box sx={cardSx}>
+                <Typography component="span" sx={labelSx}>EDUCATION</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+                  {aboutMeData.basicInfo.education.map((item, i) => (
+                    <Typography key={i} sx={itemSx}>{item}</Typography>
+                  ))}
+                </Box>
               </Box>
-            </Box>
-          </Grid>
 
-          {/* Work */}
-          <Grid item xs={12} md={6}>
-            <Box sx={cardSx}>
-              <Typography component="span" sx={labelSx}>WORK</Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-                {aboutMeData.basicInfo.work.map((item, i) => (
-                  <Typography key={i} sx={itemSx}>{item}</Typography>
-                ))}
+              {/* Work */}
+              <Box sx={cardSx}>
+                <Typography component="span" sx={labelSx}>WORK</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+                  {aboutMeData.basicInfo.work.map((item, i) => (
+                    <Typography key={i} sx={itemSx}>{item}</Typography>
+                  ))}
+                </Box>
               </Box>
+
+              {/* Skills */}
+              <Box sx={cardSx}>
+                <Typography component="span" sx={labelSx}>SKILLS</Typography>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
+                  {skills.map(({ name, tooltip }) => (
+                    <Tooltip
+                      key={name}
+                      title={tooltip || ''}
+                      placement="top"
+                      arrow
+                      disableHoverListener={!tooltip}
+                      componentsProps={{
+                        tooltip: {
+                          sx: {
+                            backgroundColor: '#2A2A2A',
+                            color: '#C4E038',
+                            fontSize: '0.75rem',
+                            border: '1px solid rgba(196,224,56,0.2)',
+                          },
+                        },
+                        arrow: { sx: { color: '#2A2A2A' } },
+                      }}
+                    >
+                      <Chip
+                        label={name}
+                        size="medium"
+                        sx={{
+                          backgroundColor: tooltip ? 'rgba(196,224,56,0.1)' : 'rgba(224,224,224,0.08)',
+                          color: tooltip ? '#C4E038' : '#E0E0E0',
+                          border: `1px solid ${tooltip ? 'rgba(196,224,56,0.4)' : 'rgba(224,224,224,0.25)'}`,
+                          fontWeight: 500,
+                          fontSize: '0.875rem',
+                          cursor: tooltip ? 'help' : 'default',
+                          transition: 'all 0.2s',
+                          '&:hover': {
+                            backgroundColor: tooltip ? 'rgba(196,224,56,0.16)' : 'rgba(224,224,224,0.14)',
+                            borderColor: tooltip ? 'rgba(196,224,56,0.6)' : 'rgba(224,224,224,0.4)',
+                          },
+                        }}
+                      />
+                    </Tooltip>
+                  ))}
+                </Box>
+              </Box>
+
             </Box>
           </Grid>
 
         </Grid>
-
-        {/* ── Skills ── */}
-        <Box sx={{ ...cardSx, height: 'auto', mt: 2, mb: { xs: 6, md: 8 } }}>
-          <Typography component="span" sx={labelSx}>SKILLS</Typography>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
-            {skills.map(({ name, tooltip }) => (
-              <Tooltip
-                key={name}
-                title={tooltip || ''}
-                placement="top"
-                arrow
-                disableHoverListener={!tooltip}
-                componentsProps={{
-                  tooltip: {
-                    sx: {
-                      backgroundColor: '#2A2A2A',
-                      color: '#C4E038',
-                      fontSize: '0.75rem',
-                      border: '1px solid rgba(196,224,56,0.2)',
-                    },
-                  },
-                  arrow: { sx: { color: '#2A2A2A' } },
-                }}
-              >
-                <Chip
-                  label={name}
-                  size="medium"
-                  sx={{
-                    backgroundColor: tooltip ? 'rgba(196,224,56,0.1)' : 'rgba(224,224,224,0.08)',
-                    color: tooltip ? '#C4E038' : '#E0E0E0',
-                    border: `1px solid ${tooltip ? 'rgba(196,224,56,0.4)' : 'rgba(224,224,224,0.25)'}`,
-                    fontWeight: 500,
-                    fontSize: '0.875rem',
-                    cursor: tooltip ? 'help' : 'default',
-                    transition: 'all 0.2s',
-                    '&:hover': {
-                      backgroundColor: tooltip ? 'rgba(196,224,56,0.16)' : 'rgba(224,224,224,0.14)',
-                      borderColor: tooltip ? 'rgba(196,224,56,0.6)' : 'rgba(224,224,224,0.4)',
-                    },
-                  }}
-                />
-              </Tooltip>
-            ))}
-          </Box>
-        </Box>
 
         {/* ── 아코디언 섹션 ── */}
         <Box>
