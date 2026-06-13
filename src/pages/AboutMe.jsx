@@ -126,8 +126,8 @@ export default function AboutMe() {
         {/* ── 2컬럼 레이아웃 ── */}
         <Grid container spacing={2} sx={{ mb: { xs: 6, md: 8 } }} alignItems="stretch">
 
-          {/* 좌측: Profile + Skills */}
-          <Grid item xs={12} md={6} sx={{ display: 'flex' }}>
+          {/* 좌측: Profile + Skills (4) */}
+          <Grid item xs={12} md={5} sx={{ display: 'flex' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}>
 
               {/* Profile */}
@@ -136,9 +136,9 @@ export default function AboutMe() {
                 {/* 사진 영역 — 실제 사진으로 교체 시 img 태그로 변경 */}
                 <Box
                   sx={{
-                    width: '100%',
-                    flexGrow: 1,
-                    minHeight: 200,
+                    width: '65%',
+                    aspectRatio: '3 / 4',
+                    mx: 'auto',
                     backgroundColor: '#242424',
                     borderRadius: '8px',
                     display: 'flex',
@@ -223,8 +223,8 @@ export default function AboutMe() {
             </Box>
           </Grid>
 
-          {/* 우측: Education + Work + Certification */}
-          <Grid item xs={12} md={6} sx={{ display: 'flex' }}>
+          {/* 우측: Education + Work + Certification (6) */}
+          <Grid item xs={12} md={7} sx={{ display: 'flex' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}>
 
               {/* Education */}
