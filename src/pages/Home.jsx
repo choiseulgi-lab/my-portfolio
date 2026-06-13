@@ -736,7 +736,6 @@ function GuestbookFeed({ refreshTrigger }) {
 
 function ContactSection() {
   const [copied, setCopied] = useState(false)
-  const [refreshTrigger, setRefreshTrigger] = useState(0)
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('choiseulgi91@naver.com')
@@ -753,129 +752,146 @@ function ContactSection() {
         borderTop: '1px solid rgba(224,224,224,0.06)',
       }}
     >
-      <Container maxWidth="lg">
-        <Grid container spacing={{ xs: 6, md: 6 }} alignItems="flex-start">
+      <Container maxWidth="sm">
+        <Typography
+          variant="overline"
+          sx={{ color: '#C4E038', letterSpacing: 0, mb: 2, display: 'block', textAlign: 'center' }}
+        >
+          Contact
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: { xs: '2.5rem', md: '3.5rem' },
+            fontWeight: 700,
+            color: '#E0E0E0',
+            letterSpacing: '-0.02em',
+            lineHeight: 1,
+            mb: 8,
+            textAlign: 'center',
+          }}
+        >
+          같이 일해요
+        </Typography>
 
-          {/* ── 좌측: CONTACT 타이틀 + 정보 리스트 + SNS */}
-          <Grid item xs={12} md={5}>
-            <Typography
-              sx={{
-                fontSize: { xs: '3.5rem', sm: '4.5rem', md: '5.5rem' },
-                fontWeight: 700,
-                color: '#E0E0E0',
-                letterSpacing: '-0.02em',
-                lineHeight: 0.9,
-                mb: 6,
-                fontFamily: '"Roboto", sans-serif',
-              }}
-            >
-              CONTACT
-            </Typography>
-
-            <Box>
-              <Divider sx={{ borderColor: 'rgba(224,224,224,0.1)' }} />
-              {INFO_ROWS.map(({ label, renderValue }) => (
-                <Box key={label}>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      py: 2.5,
-                      px: 0.5,
-                      cursor: 'default',
-                      '&:hover .info-label': { color: '#C4E038' },
-                      '&:hover .info-value': { color: '#C4E038' },
-                    }}
-                  >
-                    <Typography
-                      className="info-label"
-                      sx={{
-                        color: 'rgba(224,224,224,0.28)',
-                        fontSize: '0.875rem',
-                        letterSpacing: 1.5,
-                        fontWeight: 600,
-                        transition: 'color 0.2s',
-                        minWidth: 90,
-                        flexShrink: 0,
-                      }}
-                    >
-                      {label}
-                    </Typography>
-                    {renderValue(copied, handleCopyEmail)}
-                  </Box>
-                  <Divider sx={{ borderColor: 'rgba(224,224,224,0.1)' }} />
-                </Box>
-              ))}
-            </Box>
-
-            <Box sx={{ display: 'flex', gap: 4, mt: 5, flexWrap: 'wrap' }}>
-              {[
-                { label: '/GITHUB', href: 'https://github.com/choiseulgi' },
-                { label: '/INSTAGRAM', href: '#' },
-              ].map(({ label, href }) => (
+        <Box>
+          <Divider sx={{ borderColor: 'rgba(224,224,224,0.1)' }} />
+          {INFO_ROWS.map(({ label, renderValue }) => (
+            <Box key={label}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  py: 2.5,
+                  px: 0.5,
+                  cursor: 'default',
+                  '&:hover .info-label': { color: '#C4E038' },
+                  '&:hover .info-value': { color: '#C4E038' },
+                }}
+              >
                 <Typography
-                  key={label}
-                  component="a"
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  className="info-label"
                   sx={{
-                    color: 'rgba(224,224,224,0.3)',
-                    textDecoration: 'none',
+                    color: 'rgba(224,224,224,0.28)',
                     fontSize: '0.875rem',
-                    letterSpacing: 2,
-                    fontWeight: 500,
-                    transition: 'color 0.35s ease',
-                    '&:hover': { color: '#E0E0E0' },
+                    letterSpacing: 1.5,
+                    fontWeight: 600,
+                    transition: 'color 0.2s',
+                    minWidth: 90,
+                    flexShrink: 0,
                   }}
                 >
                   {label}
                 </Typography>
-              ))}
+                {renderValue(copied, handleCopyEmail)}
+              </Box>
+              <Divider sx={{ borderColor: 'rgba(224,224,224,0.1)' }} />
             </Box>
+          ))}
+        </Box>
 
+        <Box sx={{ display: 'flex', gap: 4, mt: 5, justifyContent: 'center' }}>
+          {[
+            { label: '/GITHUB', href: 'https://github.com/choiseulgi' },
+            { label: '/INSTAGRAM', href: '#' },
+          ].map(({ label, href }) => (
             <Typography
-              variant="caption"
-              sx={{ color: 'rgba(224,224,224,0.2)', display: 'block', mt: 6, fontSize: '0.875rem' }}
-            >
-              © 2026 Choi Seulgi. All rights reserved.
-            </Typography>
-          </Grid>
-
-          {/* ── 우측: 방명록 폼 + 피드 */}
-          <Grid item xs={12} md={7} sx={{ pt: { md: 'calc(5.5rem * 0.9 + 48px) !important' } }}>
-            <Typography
+              key={label}
+              component="a"
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               sx={{
-                color: 'rgba(224,224,224,0.35)',
+                color: 'rgba(224,224,224,0.3)',
+                textDecoration: 'none',
                 fontSize: '0.875rem',
                 letterSpacing: 2,
-                fontWeight: 600,
-                mb: 5,
+                fontWeight: 500,
+                transition: 'color 0.35s ease',
+                '&:hover': { color: '#E0E0E0' },
               }}
             >
-              GUESTBOOK
+              {label}
             </Typography>
+          ))}
+        </Box>
 
-            <GuestbookForm onSubmitSuccess={() => setRefreshTrigger(p => p + 1)} />
+        <Typography
+          sx={{ color: 'rgba(224,224,224,0.2)', display: 'block', mt: 8, fontSize: '0.75rem', textAlign: 'center' }}
+        >
+          © 2026 Choi Seulgi. All rights reserved.
+        </Typography>
+      </Container>
+    </Box>
+  )
+}
 
-            <Box sx={{ mt: 8 }}>
-              <Typography
-                sx={{
-                  color: 'rgba(224,224,224,0.25)',
-                  fontSize: '0.58rem',
-                  letterSpacing: 4,
-                  fontWeight: 600,
-                  mb: 3,
-                }}
-              >
-                FEED
-              </Typography>
-              <GuestbookFeed refreshTrigger={refreshTrigger} />
-            </Box>
-          </Grid>
+function GuestbookSection() {
+  const [refreshTrigger, setRefreshTrigger] = useState(0)
 
-        </Grid>
+  return (
+    <Box
+      sx={{
+        backgroundColor: '#0E0E0E',
+        py: { xs: 10, md: 14 },
+        borderTop: '1px solid rgba(224,224,224,0.06)',
+      }}
+    >
+      <Container maxWidth="sm">
+        <Typography
+          variant="overline"
+          sx={{ color: '#C4E038', letterSpacing: 0, mb: 2, display: 'block', textAlign: 'center' }}
+        >
+          Guestbook
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: { xs: '2rem', md: '2.5rem' },
+            fontWeight: 700,
+            color: '#E0E0E0',
+            letterSpacing: '-0.02em',
+            mb: 2,
+            textAlign: 'center',
+          }}
+        >
+          방명록
+        </Typography>
+        <Typography
+          sx={{ color: 'rgba(224,224,224,0.35)', fontSize: '0.875rem', textAlign: 'center', mb: 8, wordBreak: 'keep-all' }}
+        >
+          방문해주셔서 감사합니다. 한마디 남겨주세요!
+        </Typography>
+
+        <GuestbookForm onSubmitSuccess={() => setRefreshTrigger(p => p + 1)} />
+
+        <Box sx={{ mt: 10 }}>
+          <Typography
+            sx={{ color: 'rgba(224,224,224,0.2)', fontSize: '0.6rem', letterSpacing: 4, fontWeight: 600, mb: 3 }}
+          >
+            FEED
+          </Typography>
+          <GuestbookFeed refreshTrigger={refreshTrigger} />
+        </Box>
       </Container>
     </Box>
   )
@@ -890,6 +906,7 @@ export default function Home() {
       <SkillSection />
       <ProjectsSection />
       <ContactSection />
+      <GuestbookSection />
     </Box>
   )
 }
