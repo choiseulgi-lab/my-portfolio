@@ -836,11 +836,6 @@ function ContactSection() {
           ))}
         </Box>
 
-        <Typography
-          sx={{ color: 'rgba(224,224,224,0.2)', display: 'block', mt: 8, fontSize: '0.75rem', textAlign: 'center' }}
-        >
-          © 2026 Choi Seulgi. All rights reserved.
-        </Typography>
       </Container>
     </Box>
   )
@@ -892,6 +887,12 @@ function GuestbookSection() {
           </Typography>
           <GuestbookFeed refreshTrigger={refreshTrigger} />
         </Box>
+
+        <Typography
+          sx={{ color: 'rgba(224,224,224,0.2)', mt: 10, fontSize: '0.75rem', textAlign: 'center' }}
+        >
+          © 2026 Choi Seulgi. All rights reserved.
+        </Typography>
       </Container>
     </Box>
   )
