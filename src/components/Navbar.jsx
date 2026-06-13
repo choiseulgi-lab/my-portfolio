@@ -2,7 +2,6 @@ import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material'
 import { Link, useLocation } from 'react-router-dom'
 
 const navLinks = [
-  { label: 'Home', path: '/' },
   { label: 'About Me', path: '/about' },
   { label: 'Projects', path: '/projects' },
 ]
