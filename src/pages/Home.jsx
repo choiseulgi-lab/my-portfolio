@@ -197,11 +197,17 @@ function HeroSection() {
 const aboutSections = [
   {
     title: 'Why Design',
-    content: '사용자가 정보를 쉽고 편안하게 이해할 수 있는 화면을 만드는 것에 흥미를 느껴 UI/UX 디자인을 시작했습니다. 피그마를 활용해 다양한 서비스를 기획하고 설계하며, 사용자의 관점에서 더 쉽고 직관적인 경험을 만드는 방법을 꾸준히 고민하고 있습니다. 보기 좋은 화면을 넘어 문제를 해결하는 디자인을 만드는 것이 저의 목표입니다.',
+    lines: [
+      '사용자가 정보를 쉽고 편안하게 이해하는 화면에 흥미를 느껴 디자인을 시작했습니다.',
+      '보기 좋은 화면을 넘어, 사용자의 관점에서 문제를 실질적으로 해결하는 것이 저의 목표입니다.',
+    ],
   },
   {
     title: 'How I Design',
-    content: '저는 모든 디자인에는 명확한 이유가 있어야 한다고 생각합니다. 정보의 우선순위를 분명하게 전달하고, 사용자가 자연스럽게 흐름을 따라갈 수 있도록 설계하는 것을 중요하게 여깁니다. 작은 간격과 정렬, 터치 영역까지도 근거를 가지고 결정하며 일관성 있는 사용자 경험을 만드는 데 집중합니다.',
+    lines: [
+      '모든 디자인에는 명확한 이유와 근거가 있어야 한다고 믿습니다.',
+      '작은 간격, 정렬, 터치 영역 하나까지 놓치지 않고, 사용자가 자연스럽게 흐름을 따라가는 일관된 경험을 설계합니다.',
+    ],
   },
 ]
 
@@ -214,10 +220,10 @@ function AboutSection() {
         borderBottom: '1px solid rgba(255,255,255,0.05)',
       }}
     >
-      <Container maxWidth="lg" sx={{ px: { xs: 3, md: 5 } }}>
+      <Container maxWidth="md" sx={{ px: { xs: 3, md: 5 } }}>
 
-        {/* 섹션 헤더 */}
-        <Box sx={{ mb: { xs: 6, md: 8 } }}>
+        {/* 섹션 헤더 — 중앙 정렬 */}
+        <Box sx={{ mb: { xs: 8, md: 10 }, textAlign: 'center' }}>
           <Typography
             variant="overline"
             sx={{ color: '#C4E038', letterSpacing: 0, mb: 2, display: 'block' }}
@@ -233,53 +239,58 @@ function AboutSection() {
               lineHeight: 1.2,
             }}
           >
-            최슬기를 소개합니다
+            저를 소개합니다.
           </Typography>
         </Box>
 
-        {/* Why Design + How I Design 카드 */}
-        <Grid container spacing={3} sx={{ mb: { xs: 6, md: 8 } }}>
-          {aboutSections.map(({ title, content }) => (
-            <Grid item xs={12} md={6} key={title}>
-              <Box
+        {/* Why Design + How I Design */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0, mb: { xs: 8, md: 10 } }}>
+          {aboutSections.map(({ title, lines }, idx) => (
+            <Box
+              key={title}
+              sx={{
+                borderTop: '1px solid rgba(224,224,224,0.08)',
+                ...(idx === aboutSections.length - 1 && { borderBottom: '1px solid rgba(224,224,224,0.08)' }),
+                py: { xs: 4, md: 5 },
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                gap: { xs: 2, md: 6 },
+              }}
+            >
+              <Typography
                 sx={{
-                  backgroundColor: '#1A1A1A',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                  borderRadius: '12px',
-                  p: { xs: 3, md: 4 },
-                  height: '100%',
-                  transition: 'border-color 0.2s',
-                  '&:hover': { borderColor: 'rgba(196,224,56,0.25)' },
+                  color: '#C4E038',
+                  fontSize: '0.7rem',
+                  letterSpacing: 3,
+                  fontWeight: 700,
+                  minWidth: { md: 140 },
+                  flexShrink: 0,
+                  pt: { md: 0.5 },
                 }}
               >
-                <Typography
-                  sx={{
-                    color: '#C4E038',
-                    fontSize: '0.7rem',
-                    letterSpacing: 3,
-                    fontWeight: 700,
-                    mb: 2.5,
-                  }}
-                >
-                  {title.toUpperCase()}
-                </Typography>
-                <Typography
-                  sx={{
-                    color: 'rgba(224,224,224,0.65)',
-                    fontSize: '0.9375rem',
-                    lineHeight: 2,
-                    wordBreak: 'keep-all',
-                  }}
-                >
-                  {content}
-                </Typography>
+                {title.toUpperCase()}
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                {lines.map((line, i) => (
+                  <Typography
+                    key={i}
+                    sx={{
+                      color: i === 0 ? '#E0E0E0' : 'rgba(224,224,224,0.55)',
+                      fontSize: '0.9375rem',
+                      lineHeight: 1.85,
+                      wordBreak: 'keep-all',
+                    }}
+                  >
+                    {line}
+                  </Typography>
+                ))}
               </Box>
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
 
-        {/* 더 알아보기 버튼 */}
-        <Box>
+        {/* 더 알아보기 버튼 — 중앙 정렬 */}
+        <Box sx={{ textAlign: 'center' }}>
           <Button
             variant="outlined"
             size="large"
