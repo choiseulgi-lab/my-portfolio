@@ -665,7 +665,7 @@ function ContactSection() {
             lineHeight: 1.8,
           }}
         >
-          더 나은 사용자 경험을 위한 새로운 기회를 기다립니다.
+          함께 성장할 기회를 찾고 있습니다.
         </Typography>
 
         <Box>
