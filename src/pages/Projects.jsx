@@ -286,18 +286,6 @@ export default function Projects() {
         {/* 페이지 헤더 */}
         <Box sx={{ mb: { xs: 6, md: 10 } }}>
           <Typography
-            variant="overline"
-            sx={{
-              color: 'var(--color-primary)',
-              letterSpacing: 0,
-              mb: 2,
-              display: 'block',
-              animation: 'fadeInUp 0.6s ease 0.1s both',
-            }}
-          >
-            Works
-          </Typography>
-          <Typography
             sx={{
               color: 'var(--color-text-primary)',
               fontWeight: 700,
