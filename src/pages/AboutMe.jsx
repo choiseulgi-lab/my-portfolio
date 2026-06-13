@@ -124,11 +124,11 @@ export default function AboutMe() {
         </Box>
 
         {/* ── 2컬럼 레이아웃 ── */}
-        <Grid container spacing={2} sx={{ mb: { xs: 6, md: 8 } }}>
+        <Grid container spacing={2} sx={{ mb: { xs: 6, md: 8 } }} alignItems="stretch">
 
-          {/* 좌측: Profile + Certification */}
-          <Grid item xs={12} md={6}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {/* 좌측: Profile + Skills */}
+          <Grid item xs={12} md={6} sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}>
 
               {/* Profile */}
               <Box sx={cardSx}>
@@ -137,7 +137,7 @@ export default function AboutMe() {
                 <Box
                   sx={{
                     width: '100%',
-                    aspectRatio: '4 / 3',
+                    height: 160,
                     backgroundColor: '#242424',
                     borderRadius: '8px',
                     display: 'flex',
@@ -169,45 +169,8 @@ export default function AboutMe() {
                 />
               </Box>
 
-              {/* Certification */}
-              <Box sx={cardSx}>
-                <Typography component="span" sx={labelSx}>CERTIFICATION</Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.75 }}>
-                  {aboutMeData.basicInfo.certification.map((item, i) => (
-                    <Typography key={i} sx={itemSx}>{item}</Typography>
-                  ))}
-                </Box>
-              </Box>
-
-            </Box>
-          </Grid>
-
-          {/* 우측: Education + Work + Skills */}
-          <Grid item xs={12} md={6}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-
-              {/* Education */}
-              <Box sx={cardSx}>
-                <Typography component="span" sx={labelSx}>EDUCATION</Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-                  {aboutMeData.basicInfo.education.map((item, i) => (
-                    <Typography key={i} sx={itemSx}>{item}</Typography>
-                  ))}
-                </Box>
-              </Box>
-
-              {/* Work */}
-              <Box sx={cardSx}>
-                <Typography component="span" sx={labelSx}>WORK</Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-                  {aboutMeData.basicInfo.work.map((item, i) => (
-                    <Typography key={i} sx={itemSx}>{item}</Typography>
-                  ))}
-                </Box>
-              </Box>
-
               {/* Skills */}
-              <Box sx={cardSx}>
+              <Box sx={{ ...cardSx, flexGrow: 1 }}>
                 <Typography component="span" sx={labelSx}>SKILLS</Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
                   {skills.map(({ name, tooltip }) => (
@@ -247,6 +210,43 @@ export default function AboutMe() {
                         }}
                       />
                     </Tooltip>
+                  ))}
+                </Box>
+              </Box>
+
+            </Box>
+          </Grid>
+
+          {/* 우측: Education + Work + Certification */}
+          <Grid item xs={12} md={6} sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}>
+
+              {/* Education */}
+              <Box sx={cardSx}>
+                <Typography component="span" sx={labelSx}>EDUCATION</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+                  {aboutMeData.basicInfo.education.map((item, i) => (
+                    <Typography key={i} sx={itemSx}>{item}</Typography>
+                  ))}
+                </Box>
+              </Box>
+
+              {/* Work */}
+              <Box sx={cardSx}>
+                <Typography component="span" sx={labelSx}>WORK</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+                  {aboutMeData.basicInfo.work.map((item, i) => (
+                    <Typography key={i} sx={itemSx}>{item}</Typography>
+                  ))}
+                </Box>
+              </Box>
+
+              {/* Certification */}
+              <Box sx={{ ...cardSx, flexGrow: 1 }}>
+                <Typography component="span" sx={labelSx}>CERTIFICATION</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.75 }}>
+                  {aboutMeData.basicInfo.certification.map((item, i) => (
+                    <Typography key={i} sx={itemSx}>{item}</Typography>
                   ))}
                 </Box>
               </Box>
