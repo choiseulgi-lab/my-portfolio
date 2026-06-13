@@ -218,7 +218,7 @@ function ProjectsSection() {
             Projects
           </Typography>
           <Typography variant="h3" sx={{ color: 'var(--color-text-primary)', fontWeight: 700, mb: 2 }}>
-            Selected Works
+            Explore My Work
           </Typography>
           <Typography variant="body1" sx={{ color: 'var(--color-text-muted)' }}>
             사용자 관점에서 문제를 발견하고 해결한 프로젝트를 소개합니다.
