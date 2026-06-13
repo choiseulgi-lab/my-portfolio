@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import {
   Box, Typography, Button, Container,
-  Card, CardContent, Grid, LinearProgress,
+  Card, CardContent, Grid,
   TextField, Stack, Divider, Snackbar, Alert,
   IconButton, Tooltip, Checkbox, FormControlLabel,
 } from '@mui/material'
@@ -193,194 +193,7 @@ function HeroSection() {
   )
 }
 
-/* ── 2. About Me 섹션 ─────────────────────────────────────── */
-const aboutSections = [
-  {
-    title: 'Why Design',
-    lines: [
-      '사용자가 정보를 쉽고 편안하게 이해하는 화면에 흥미를 느껴 디자인을 시작했습니다.',
-      '보기 좋은 화면을 넘어, 사용자의 관점에서 문제를 실질적으로 해결하는 것이 저의 목표입니다.',
-    ],
-  },
-  {
-    title: 'How I Design',
-    lines: [
-      '모든 디자인에는 명확한 이유와 근거가 있어야 한다고 믿습니다.',
-      '작은 간격, 정렬, 터치 영역 하나까지 놓치지 않고, 사용자가 자연스럽게 흐름을 따라가는 일관된 경험을 설계합니다.',
-    ],
-  },
-]
-
-function AboutSection() {
-  return (
-    <Box
-      sx={{
-        py: { xs: 10, md: 14 },
-        backgroundColor: '#111111',
-        borderBottom: '1px solid rgba(255,255,255,0.05)',
-      }}
-    >
-      <Container maxWidth="md" sx={{ px: { xs: 3, md: 5 } }}>
-
-        {/* 섹션 헤더 — 중앙 정렬 */}
-        <Box sx={{ mb: { xs: 8, md: 10 }, textAlign: 'center' }}>
-          <Typography
-            variant="overline"
-            sx={{ color: '#C4E038', letterSpacing: 0, mb: 2, display: 'block' }}
-          >
-            About Me
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: { xs: '2rem', md: '2.75rem' },
-              fontWeight: 700,
-              color: '#E0E0E0',
-              letterSpacing: '-0.02em',
-              lineHeight: 1.2,
-            }}
-          >
-            저를 소개합니다.
-          </Typography>
-        </Box>
-
-        {/* Why Design + How I Design */}
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0, mb: { xs: 8, md: 10 } }}>
-          {aboutSections.map(({ title, lines }, idx) => (
-            <Box
-              key={title}
-              sx={{
-                borderTop: '1px solid rgba(224,224,224,0.08)',
-                ...(idx === aboutSections.length - 1 && { borderBottom: '1px solid rgba(224,224,224,0.08)' }),
-                py: { xs: 4, md: 5 },
-                display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                gap: { xs: 2, md: 6 },
-              }}
-            >
-              <Typography
-                sx={{
-                  color: '#C4E038',
-                  fontSize: '0.7rem',
-                  letterSpacing: 3,
-                  fontWeight: 700,
-                  minWidth: { md: 140 },
-                  flexShrink: 0,
-                  pt: { md: 0.5 },
-                }}
-              >
-                {title.toUpperCase()}
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                {lines.map((line, i) => (
-                  <Typography
-                    key={i}
-                    sx={{
-                      color: i === 0 ? '#E0E0E0' : 'rgba(224,224,224,0.55)',
-                      fontSize: '0.9375rem',
-                      lineHeight: 1.85,
-                      wordBreak: 'keep-all',
-                    }}
-                  >
-                    {line}
-                  </Typography>
-                ))}
-              </Box>
-            </Box>
-          ))}
-        </Box>
-
-        {/* 더 알아보기 버튼 — 중앙 정렬 */}
-        <Box sx={{ textAlign: 'center' }}>
-          <Button
-            variant="outlined"
-            size="large"
-            component={Link}
-            to="/about"
-            sx={{
-              borderColor: 'rgba(196,224,56,0.4)',
-              color: '#C4E038',
-              px: 4,
-              transition: 'all 0.2s',
-              '&:hover': {
-                borderColor: '#C4E038',
-                backgroundColor: 'rgba(196,224,56,0.08)',
-                transform: 'translateY(-2px)',
-              },
-            }}
-          >
-            더 알아보기
-          </Button>
-        </Box>
-
-      </Container>
-    </Box>
-  )
-}
-
-/* ── 3. Skill Tree 섹션 ───────────────────────────────────── */
-const skills = [
-  { name: 'React', value: 80 },
-  { name: 'JavaScript', value: 75 },
-  { name: 'TypeScript', value: 60 },
-  { name: 'CSS / MUI', value: 70 },
-  { name: 'Node.js', value: 55 },
-]
-
-function SkillSection() {
-  return (
-    <Box
-      sx={{
-        py: 12,
-        backgroundColor: 'var(--color-bg-primary)',
-        borderBottom: '1px solid var(--color-border-dark)',
-      }}
-    >
-      <Container maxWidth="md">
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography
-            variant="overline"
-            sx={{ color: 'var(--color-primary)', letterSpacing: 0, mb: 2, display: 'block' }}
-          >
-            Skills
-          </Typography>
-          <Typography variant="h3" sx={{ color: 'var(--color-text-primary)', fontWeight: 700, mb: 2 }}>
-            여기는 Skill Tree 섹션입니다.
-          </Typography>
-          <Typography variant="body1" sx={{ color: 'var(--color-text-muted)' }}>
-            기술 스택을 트리나 프로그레스바로 시각화할 예정입니다.
-          </Typography>
-        </Box>
-        <Stack spacing={3}>
-          {skills.map(({ name, value }) => (
-            <Box key={name}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                <Typography sx={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>
-                  {name}
-                </Typography>
-                <Typography sx={{ color: 'var(--color-primary)' }}>{value}%</Typography>
-              </Box>
-              <LinearProgress
-                variant="determinate"
-                value={value}
-                sx={{
-                  height: 8,
-                  borderRadius: 4,
-                  backgroundColor: 'var(--color-secondary-light)',
-                  '& .MuiLinearProgress-bar': {
-                    background: 'linear-gradient(90deg, var(--color-accent), var(--color-primary-light))',
-                    borderRadius: 4,
-                  },
-                }}
-              />
-            </Box>
-          ))}
-        </Stack>
-      </Container>
-    </Box>
-  )
-}
-
-/* ── 4. Projects 섹션 ─────────────────────────────────────── */
+/* ── 2. Projects 섹션 ─────────────────────────────────────── */
 const projectCards = [
   { title: 'Project 01', desc: '프로젝트 설명이 들어갈 예정입니다.' },
   { title: 'Project 02', desc: '프로젝트 설명이 들어갈 예정입니다.' },
@@ -972,8 +785,6 @@ export default function Home() {
   return (
     <Box>
       <HeroSection />
-      <AboutSection />
-      <SkillSection />
       <ProjectsSection />
       <ContactSection />
       <GuestbookSection />
