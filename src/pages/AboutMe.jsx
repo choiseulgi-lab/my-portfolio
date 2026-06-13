@@ -64,7 +64,6 @@ const skills = [
 
 const infoRows = [
   { label: 'WORK', value: aboutMeData.basicInfo.work },
-  { label: 'TOOLS', value: aboutMeData.basicInfo.tools },
   { label: 'EDUCATION', value: aboutMeData.basicInfo.education },
   { label: 'CERTIFICATION', value: aboutMeData.basicInfo.certification },
 ]
