@@ -38,6 +38,7 @@ function HeroSection() {
         backgroundColor: 'var(--color-bg-primary)',
         borderBottom: '1px solid var(--color-border-dark)',
         pt: 8,
+        pb: 8,
         position: 'relative',
         overflow: 'hidden',
         '@keyframes fadeInUp': {
@@ -138,6 +139,7 @@ function HeroSection() {
           direction={{ xs: 'column', sm: 'row' }}
           spacing={2}
           justifyContent="center"
+          alignItems="center"
           sx={{ animation: 'fadeInUp 0.6s ease 0.7s both' }}
         >
           <Button
