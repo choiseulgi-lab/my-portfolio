@@ -139,18 +139,6 @@ export default function AboutMe() {
                 top: { md: 100 },
               }}
             >
-              <Typography
-                sx={{
-                  color: 'rgba(224,224,224,0.25)',
-                  fontSize: '0.7rem',
-                  letterSpacing: 4,
-                  fontWeight: 600,
-                  mb: 4,
-                }}
-              >
-                PROFILE
-              </Typography>
-
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                 {infoRows.map(({ label, value }) => (
                   <Box key={label}>
