@@ -80,11 +80,13 @@ export default function AboutMe() {
       sx={{
         minHeight: '100vh',
         backgroundColor: '#0E0E0E',
+        display: 'flex',
+        alignItems: 'center',
         pt: { xs: 12, md: 14 },
         pb: { xs: 10, md: 14 },
       }}
     >
-      <Container maxWidth="xl" sx={{ px: { xs: 3, md: 5 } }}>
+      <Container maxWidth="lg" sx={{ px: { xs: 3, md: 5 }, width: '100%' }}>
 
         {/* ── 페이지 헤더 ── */}
         <Box sx={{ mb: { xs: 8, md: 12 } }}>
