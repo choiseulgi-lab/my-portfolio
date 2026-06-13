@@ -8,6 +8,7 @@ import {
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import heroLogo from '../assets/hero-logo.png'
 
 /* ── 1. Hero 섹션 ─────────────────────────────────────────── */
 function HeroSection() {
@@ -17,60 +18,106 @@ function HeroSection() {
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
         backgroundColor: 'var(--color-bg-primary)',
         borderBottom: '1px solid var(--color-border-dark)',
         pt: 8,
       }}
     >
-      <Container maxWidth="md" sx={{ textAlign: 'center' }}>
-        <Typography
-          variant="overline"
-          sx={{ color: 'var(--color-primary)', letterSpacing: 0, mb: 2, display: 'block' }}
-        >
-          Welcome
-        </Typography>
-        <Typography variant="h2" sx={{ color: 'var(--color-text-primary)', fontWeight: 700, mb: 3 }}>
-          최슬기
-        </Typography>
-        <Typography variant="h6" sx={{ color: 'var(--color-text-muted)', mb: 5, lineHeight: 1.8 }}>
-          보기 좋은 화면을 넘어, 사용자의 불편함을 직관적으로 해결하는 디자이너
-        </Typography>
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
-          <Button
-            variant="contained"
-            size="large"
-            component={Link}
-            to="/projects"
-            sx={{
-              backgroundColor: 'var(--color-button-primary)',
-              color: 'var(--color-text-inverse)',
-              fontWeight: 700,
-              px: 4,
-              '&:hover': { backgroundColor: 'var(--color-button-hover)' },
-            }}
-          >
-            Projects 보기
-          </Button>
-          <Button
-            variant="outlined"
-            size="large"
-            component={Link}
-            to="/about"
-            sx={{
-              borderColor: 'var(--color-primary)',
-              color: 'var(--color-primary)',
-              px: 4,
-              '&:hover': {
-                borderColor: 'var(--color-primary-light)',
-                color: 'var(--color-primary-light)',
-                backgroundColor: 'rgba(196,224,56,0.08)',
-              },
-            }}
-          >
-            About Me
-          </Button>
-        </Stack>
+      <Container maxWidth="lg">
+        <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
+
+          {/* 로고 이미지 */}
+          <Grid item xs={12} md={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box
+              sx={{
+                width: { xs: 260, sm: 300, md: 380 },
+                height: { xs: 260, sm: 300, md: 380 },
+                borderRadius: '20px',
+                overflow: 'hidden',
+                boxShadow: '0 0 60px rgba(196,224,56,0.12), 0 0 120px rgba(20,90,80,0.25)',
+                border: '1px solid rgba(196,224,56,0.15)',
+                flexShrink: 0,
+              }}
+            >
+              <img
+                src={heroLogo}
+                alt="SG — 최슬기 로고"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            </Box>
+          </Grid>
+
+          {/* 텍스트 */}
+          <Grid item xs={12} md={7}>
+            <Typography
+              variant="overline"
+              sx={{ color: 'var(--color-primary)', letterSpacing: 0, mb: 2, display: 'block' }}
+            >
+              UI/UX Designer
+            </Typography>
+            <Typography
+              variant="h2"
+              sx={{
+                color: 'var(--color-text-primary)',
+                fontWeight: 700,
+                mb: 3,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
+              }}
+            >
+              최슬기
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: 'var(--color-text-muted)',
+                mb: 5,
+                lineHeight: 1.9,
+                fontWeight: 400,
+                wordBreak: 'keep-all',
+              }}
+            >
+              보기 좋은 화면을 넘어,<br />
+              사용자의 불편함을 직관적으로 해결하는 디자이너
+            </Typography>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+              <Button
+                variant="contained"
+                size="large"
+                component={Link}
+                to="/projects"
+                sx={{
+                  backgroundColor: 'var(--color-button-primary)',
+                  color: 'var(--color-text-inverse)',
+                  fontWeight: 700,
+                  px: 4,
+                  '&:hover': { backgroundColor: 'var(--color-button-hover)' },
+                }}
+              >
+                Projects 보기
+              </Button>
+              <Button
+                variant="outlined"
+                size="large"
+                component={Link}
+                to="/about"
+                sx={{
+                  borderColor: 'var(--color-primary)',
+                  color: 'var(--color-primary)',
+                  px: 4,
+                  '&:hover': {
+                    borderColor: 'var(--color-primary-light)',
+                    color: 'var(--color-primary-light)',
+                    backgroundColor: 'rgba(196,224,56,0.08)',
+                  },
+                }}
+              >
+                About Me
+              </Button>
+            </Stack>
+          </Grid>
+
+        </Grid>
       </Container>
     </Box>
   )
