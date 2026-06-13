@@ -151,18 +151,6 @@ export default function AboutMe() {
                 PROFILE
               </Typography>
 
-              <Typography
-                sx={{
-                  color: 'rgba(224,224,224,0.65)',
-                  fontSize: '0.875rem',
-                  lineHeight: 1.9,
-                  mb: 5,
-                  wordBreak: 'keep-all',
-                }}
-              >
-                {aboutMeData.basicInfo.description}
-              </Typography>
-
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                 {infoRows.map(({ label, value }) => (
                   <Box key={label}>
