@@ -178,11 +178,11 @@ function HeroSection() {
             size="large"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             sx={{
-              borderColor: 'rgba(224,224,224,0.3)',
-              color: 'rgba(224,224,224,0.6)',
+              borderColor: 'var(--color-primary)',
+              color: 'var(--color-primary)',
               px: 4,
               transition: 'all 0.2s ease',
-              '&:hover': { borderColor: '#E0E0E0', color: '#E0E0E0', backgroundColor: 'rgba(224,224,224,0.06)', transform: 'translateY(-2px)' },
+              '&:hover': { borderColor: 'var(--color-primary-light)', color: 'var(--color-primary-light)', backgroundColor: 'rgba(196,224,56,0.08)', transform: 'translateY(-2px)' },
             }}
           >
             CONTACT
