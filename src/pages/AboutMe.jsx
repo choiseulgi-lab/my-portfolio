@@ -61,6 +61,11 @@ const cardSx = {
   p: { xs: 3, md: 3.5 },
   height: '100%',
   boxSizing: 'border-box',
+  transition: 'transform 0.25s ease, border-color 0.25s ease',
+  '&:hover': {
+    transform: 'translateY(-4px)',
+    borderColor: 'rgba(196,224,56,0.3)',
+  },
 }
 
 const labelSx = {
