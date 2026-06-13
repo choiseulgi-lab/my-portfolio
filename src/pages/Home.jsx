@@ -82,7 +82,7 @@ function SgLineAnimation() {
       />
 
       {/* 주황 태양 — s·g 사이 언덕 정점 */}
-      <circle className="sg-sun" cx="336" cy="34" r="14" fill="#E8734A" />
+      <circle className="sg-sun" cx="336" cy="34" r="14" fill="#FF6B35" />
       {/* 작은 흰 점 */}
       <circle className="sg-dot" cx="336" cy="16" r="5" fill="white" />
     </svg>
