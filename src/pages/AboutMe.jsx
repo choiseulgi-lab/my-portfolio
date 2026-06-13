@@ -138,7 +138,6 @@ export default function AboutMe() {
                   sx={{
                     width: '65%',
                     aspectRatio: '3 / 4',
-                    mx: 'auto',
                     backgroundColor: '#242424',
                     borderRadius: '8px',
                     display: 'flex',
@@ -170,16 +169,6 @@ export default function AboutMe() {
                     mb: 2.5,
                   }}
                 />
-                <Typography
-                  sx={{
-                    color: 'rgba(224,224,224,0.5)',
-                    fontSize: '0.78rem',
-                    letterSpacing: 0.3,
-                    mb: 1,
-                  }}
-                >
-                  choiseulgi91@naver.com
-                </Typography>
                 <Typography
                   sx={{
                     color: 'rgba(224,224,224,0.65)',
