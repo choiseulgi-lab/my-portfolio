@@ -11,6 +11,23 @@ import { supabase } from '../lib/supabase'
 
 /* ── 1. Hero 섹션 ─────────────────────────────────────────── */
 function HeroSection() {
+  const [displayedRole, setDisplayedRole] = useState('')
+  const [typingDone, setTypingDone] = useState(false)
+  const fullRole = 'UI/UX Designer'
+
+  useEffect(() => {
+    let i = 0
+    const timer = setInterval(() => {
+      i++
+      setDisplayedRole(fullRole.slice(0, i))
+      if (i >= fullRole.length) {
+        clearInterval(timer)
+        setTypingDone(true)
+      }
+    }, 80)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <Box
       sx={{
@@ -21,41 +38,107 @@ function HeroSection() {
         backgroundColor: 'var(--color-bg-primary)',
         borderBottom: '1px solid var(--color-border-dark)',
         pt: 8,
+        position: 'relative',
+        overflow: 'hidden',
+        '@keyframes fadeInUp': {
+          from: { opacity: 0, transform: 'translateY(28px)' },
+          to: { opacity: 1, transform: 'translateY(0)' },
+        },
+        '@keyframes bounceY': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(8px)' },
+        },
+        '@keyframes floatAnim': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        '@keyframes blink': {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0 },
+        },
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'radial-gradient(rgba(196,224,56,0.09) 1px, transparent 1px)',
+          backgroundSize: '36px 36px',
+          zIndex: 0,
+        },
       }}
     >
-      <Container maxWidth="md" sx={{ textAlign: 'center' }}>
+      {/* 배경 글로우 */}
+      <Box sx={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', backgroundColor: 'rgba(196,224,56,0.04)', top: '-15%', left: '-12%', filter: 'blur(90px)', animation: 'floatAnim 9s ease-in-out infinite', zIndex: 0, pointerEvents: 'none' }} />
+      <Box sx={{ position: 'absolute', width: 350, height: 350, borderRadius: '50%', backgroundColor: 'rgba(20,80,70,0.18)', bottom: '5%', right: '-8%', filter: 'blur(80px)', animation: 'floatAnim 11s ease-in-out infinite 2s', zIndex: 0, pointerEvents: 'none' }} />
+      <Box sx={{ position: 'absolute', width: 220, height: 220, borderRadius: '50%', backgroundColor: 'rgba(196,224,56,0.05)', top: '35%', right: '8%', filter: 'blur(60px)', animation: 'floatAnim 7s ease-in-out infinite 1s', zIndex: 0, pointerEvents: 'none' }} />
+
+      <Container maxWidth="md" sx={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+
+        {/* 타이핑 role */}
+        <Box sx={{ mb: 3, minHeight: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'fadeInUp 0.6s ease forwards' }}>
+          <Typography
+            component="span"
+            sx={{ color: 'var(--color-primary)', letterSpacing: 4, fontSize: '0.85rem', fontWeight: 600, fontFamily: 'monospace' }}
+          >
+            {displayedRole}
+          </Typography>
+          {!typingDone && (
+            <Box component="span" sx={{ display: 'inline-block', width: '2px', height: '1em', backgroundColor: 'var(--color-primary)', ml: '2px', animation: 'blink 0.8s step-end infinite' }} />
+          )}
+        </Box>
+
+        {/* 이름 — 그라디언트 텍스트 */}
         <Typography
-          variant="overline"
-          sx={{ color: 'var(--color-primary)', letterSpacing: 0, mb: 2, display: 'block' }}
-        >
-          UI/UX Designer
-        </Typography>
-        <Typography
-          variant="h2"
           sx={{
-            color: 'var(--color-text-primary)',
-            fontWeight: 700,
+            fontSize: { xs: '3.5rem', sm: '5rem', md: '7rem' },
+            fontWeight: 800,
+            letterSpacing: '-0.03em',
+            lineHeight: 1,
             mb: 3,
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
+            background: 'linear-gradient(135deg, #E0E0E0 30%, #C4E038 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            animation: 'fadeInUp 0.6s ease 0.3s both',
           }}
         >
           최슬기
         </Typography>
+
+        {/* 포인트 라인 */}
+        <Box
+          sx={{
+            width: 48,
+            height: 2,
+            background: 'linear-gradient(90deg, #9DB82C, #C4E038)',
+            mx: 'auto',
+            mb: 4,
+            animation: 'fadeInUp 0.6s ease 0.5s both',
+          }}
+        />
+
+        {/* 헤드라인 */}
         <Typography
           variant="h6"
           sx={{
-            color: 'var(--color-text-muted)',
-            mb: 5,
+            color: 'rgba(224,224,224,0.65)',
+            mb: 6,
             lineHeight: 1.9,
             fontWeight: 400,
             wordBreak: 'keep-all',
+            animation: 'fadeInUp 0.6s ease 0.6s both',
           }}
         >
           보기 좋은 화면을 넘어,<br />
           사용자의 불편함을 직관적으로 해결하는 디자이너
         </Typography>
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
+
+        {/* 버튼 */}
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+          justifyContent="center"
+          sx={{ animation: 'fadeInUp 0.6s ease 0.7s both' }}
+        >
           <Button
             variant="contained"
             size="large"
@@ -66,7 +149,8 @@ function HeroSection() {
               color: 'var(--color-text-inverse)',
               fontWeight: 700,
               px: 4,
-              '&:hover': { backgroundColor: 'var(--color-button-hover)' },
+              transition: 'all 0.2s ease',
+              '&:hover': { backgroundColor: 'var(--color-button-hover)', transform: 'translateY(-2px)', boxShadow: '0 8px 20px rgba(196,224,56,0.25)' },
             }}
           >
             Projects 보기
@@ -80,17 +164,42 @@ function HeroSection() {
               borderColor: 'var(--color-primary)',
               color: 'var(--color-primary)',
               px: 4,
-              '&:hover': {
-                borderColor: 'var(--color-primary-light)',
-                color: 'var(--color-primary-light)',
-                backgroundColor: 'rgba(196,224,56,0.08)',
-              },
+              transition: 'all 0.2s ease',
+              '&:hover': { borderColor: 'var(--color-primary-light)', color: 'var(--color-primary-light)', backgroundColor: 'rgba(196,224,56,0.08)', transform: 'translateY(-2px)' },
             }}
           >
             About Me
           </Button>
         </Stack>
       </Container>
+
+      {/* 스크롤 유도 */}
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 36,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 1,
+          zIndex: 1,
+          animation: 'fadeInUp 0.6s ease 1.2s both',
+        }}
+      >
+        <Typography sx={{ color: 'rgba(224,224,224,0.2)', fontSize: '0.6rem', letterSpacing: 4, fontWeight: 600 }}>
+          SCROLL
+        </Typography>
+        <Box
+          sx={{
+            width: '1px',
+            height: 44,
+            background: 'linear-gradient(180deg, rgba(196,224,56,0.6) 0%, rgba(196,224,56,0) 100%)',
+            animation: 'bounceY 1.8s ease-in-out infinite',
+          }}
+        />
+      </Box>
     </Box>
   )
 }
