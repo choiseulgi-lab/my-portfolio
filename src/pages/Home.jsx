@@ -8,7 +8,6 @@ import {
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
-import heroLogo from '../assets/hero-logo.png'
 
 /* ── 1. Hero 섹션 ─────────────────────────────────────────── */
 function HeroSection() {
@@ -19,21 +18,12 @@ function HeroSection() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        position: 'relative',
-        backgroundImage: `url(${heroLogo})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundColor: 'var(--color-bg-primary)',
         borderBottom: '1px solid var(--color-border-dark)',
         pt: 8,
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(160deg, rgba(10,30,28,0.78) 0%, rgba(8,16,30,0.88) 100%)',
-        },
       }}
     >
-      <Container maxWidth="md" sx={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+      <Container maxWidth="md" sx={{ textAlign: 'center' }}>
         <Typography
           variant="overline"
           sx={{ color: 'var(--color-primary)', letterSpacing: 0, mb: 2, display: 'block' }}
