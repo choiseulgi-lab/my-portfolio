@@ -276,11 +276,15 @@ export default function Projects() {
         backgroundColor: 'var(--color-bg-primary)',
         pt: { xs: 12, md: 14 },
         pb: { xs: 10, md: 14 },
+        '@keyframes fadeInUp': {
+          from: { opacity: 0, transform: 'translateY(24px)' },
+          to:   { opacity: 1, transform: 'translateY(0)' },
+        },
       }}
     >
       <Container maxWidth="lg">
         {/* 페이지 헤더 */}
-        <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 10 } }}>
+        <Box sx={{ mb: { xs: 6, md: 10 } }}>
           <Typography
             variant="overline"
             sx={{
@@ -288,18 +292,32 @@ export default function Projects() {
               letterSpacing: 0,
               mb: 2,
               display: 'block',
+              animation: 'fadeInUp 0.6s ease 0.1s both',
             }}
           >
             Works
           </Typography>
           <Typography
-            variant="h3"
-            sx={{ color: 'var(--color-text-primary)', fontWeight: 700, mb: 2 }}
+            sx={{
+              color: 'var(--color-text-primary)',
+              fontWeight: 700,
+              fontSize: { xs: '2.2rem', md: '3.75rem' },
+              letterSpacing: '-0.03em',
+              lineHeight: 1.15,
+              mb: 2,
+              animation: 'fadeInUp 0.6s ease 0.2s both',
+            }}
           >
-            My Projects
+            Explore My Work
           </Typography>
-          <Typography variant="body1" sx={{ color: 'var(--color-text-muted)' }}>
-            바이브코딩으로 직접 설계하고 개발한 프로젝트들입니다.
+          <Typography
+            variant="body1"
+            sx={{
+              color: 'var(--color-text-muted)',
+              animation: 'fadeInUp 0.6s ease 0.35s both',
+            }}
+          >
+            사용자 관점에서 문제를 발견하고 해결한 프로젝트를 소개합니다.
           </Typography>
         </Box>
 
