@@ -9,6 +9,81 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 
+/* ── SG 라인 애니메이션 ───────────────────────────────────── */
+function SgLineAnimation() {
+  return (
+    <svg
+      viewBox="0 0 900 120"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ width: '100%', height: 'auto', display: 'block' }}
+      aria-hidden="true"
+    >
+      <defs>
+        <style>{`
+          @keyframes drawSgPath {
+            to { stroke-dashoffset: 0; }
+          }
+          @keyframes rollIn {
+            from { opacity: 0; transform: translateX(40px); }
+            to   { opacity: 1; transform: translateX(0px); }
+          }
+          .sg-path {
+            stroke-dasharray: 2800;
+            stroke-dashoffset: 2800;
+            animation: drawSgPath 2.2s ease-in-out forwards 0.4s;
+          }
+          .sg-sun {
+            opacity: 0;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: rollIn 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards 2.8s;
+          }
+          .sg-dot {
+            opacity: 0;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: rollIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards 3.1s;
+          }
+        `}</style>
+      </defs>
+
+      {/* s·g 패스: 로고 이미지의 굴곡선 근사 */}
+      <path
+        className="sg-path"
+        d="M 0 62
+           L 48 62
+           C 62 62, 72 76, 78 86
+           C 84 96, 88 96, 94 88
+           C 100 80, 103 65, 110 55
+           C 116 45, 124 38, 134 36
+           L 148 62
+           C 152 65, 158 65, 168 62
+           L 196 62
+           C 210 62, 222 50, 236 42
+           C 250 34, 266 30, 282 36
+           C 298 42, 308 56, 306 70
+           C 304 84, 292 94, 278 94
+           C 264 94, 253 83, 255 70
+           C 257 62, 264 60, 274 62
+           L 298 62
+           C 340 62, 410 56, 480 63
+           C 550 70, 630 58, 710 62
+           C 790 66, 860 60, 900 62"
+        fill="none"
+        stroke="rgba(255,255,255,0.7)"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* 주황 태양 */}
+      <circle className="sg-sun" cx="141" cy="40" r="13" fill="#E8734A" />
+      {/* 작은 흰 점 */}
+      <circle className="sg-dot" cx="141" cy="23" r="4.5" fill="white" />
+    </svg>
+  )
+}
+
 /* ── 1. Hero 섹션 ─────────────────────────────────────────── */
 function HeroSection() {
   const [displayedRole, setDisplayedRole] = useState('')
@@ -173,6 +248,21 @@ function HeroSection() {
           </Button>
         </Stack>
       </Container>
+
+      {/* SG 라인 애니메이션 */}
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 90,
+          left: 0,
+          right: 0,
+          zIndex: 0,
+          pointerEvents: 'none',
+          px: { xs: 2, md: 6 },
+        }}
+      >
+        <SgLineAnimation />
+      </Box>
 
       {/* 스크롤 유도 */}
       <Box
