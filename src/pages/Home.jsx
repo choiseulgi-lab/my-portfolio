@@ -80,7 +80,7 @@ function HeroSection() {
         <Box sx={{ mb: 3, minHeight: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'fadeInUp 0.6s ease forwards' }}>
           <Typography
             component="span"
-            sx={{ color: 'var(--color-primary)', letterSpacing: 4, fontSize: '0.85rem', fontWeight: 600, fontFamily: 'monospace' }}
+            sx={{ color: 'var(--color-primary)', letterSpacing: 4, fontSize: '0.85rem', fontWeight: 700, fontFamily: '"Space Mono", monospace' }}
           >
             {displayedRole}
           </Typography>
