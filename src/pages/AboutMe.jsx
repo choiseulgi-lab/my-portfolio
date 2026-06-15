@@ -5,6 +5,7 @@ import {
   Chip, Tooltip,
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { skills } from '../data/skills'
 
 const aboutMeData = {
   basicInfo: {
@@ -46,13 +47,6 @@ const aboutMeData = {
   ],
 }
 
-const skills = [
-  { name: 'Figma',       tooltip: '' },
-  { name: 'Illustrator', tooltip: 'GTQ 일러스트 1급 취득' },
-  { name: 'Photoshop',   tooltip: 'GTQ 포토샵 1급 취득' },
-  { name: 'Adobe XD',    tooltip: '' },
-  { name: 'Indesign',    tooltip: 'GTQ 인디자인 1급 취득' },
-]
 
 const cardSx = {
   backgroundColor: '#1A1A1A',

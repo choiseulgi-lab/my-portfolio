@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import {
   Box, Typography, Button, Container,
-  Card, CardContent, Grid,
+  Grid, CircularProgress,
   TextField, Stack, Divider, Snackbar, Alert,
-  IconButton, Tooltip, Checkbox, FormControlLabel,
+  IconButton, Tooltip, Checkbox, FormControlLabel, Chip,
 } from '@mui/material'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import { skills } from '../data/skills'
+import ProjectCard from '../components/ProjectCard'
 
 /* ── 1. Hero 섹션 ─────────────────────────────────────────── */
 function HeroSection() {
@@ -115,6 +117,61 @@ function HeroSection() {
           }}
         />
 
+        {/* 스킬 칩 */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 1,
+            justifyContent: 'center',
+            mb: 4,
+            animation: 'fadeInUp 0.6s ease 0.55s both',
+          }}
+        >
+          {skills.map(({ name, tooltip }) => (
+            <Tooltip
+              key={name}
+              title={tooltip || ''}
+              placement="top"
+              arrow
+              disableHoverListener={!tooltip}
+              componentsProps={{
+                tooltip: {
+                  sx: {
+                    backgroundColor: '#2A2A2A',
+                    color: '#C4E038',
+                    fontSize: '0.75rem',
+                    border: '1px solid rgba(196,224,56,0.2)',
+                  },
+                },
+                arrow: { sx: { color: '#2A2A2A' } },
+              }}
+            >
+              <Chip
+                label={name}
+                size="small"
+                sx={{
+                  backgroundColor: 'rgba(224,224,224,0.06)',
+                  color: 'rgba(224,224,224,0.6)',
+                  border: '1px solid rgba(224,224,224,0.15)',
+                  fontSize: '0.75rem',
+                  fontWeight: 500,
+                  cursor: tooltip ? 'help' : 'default',
+                  transition: 'all 0.2s',
+                  '&:hover': tooltip ? {
+                    backgroundColor: 'rgba(196,224,56,0.1)',
+                    color: '#C4E038',
+                    borderColor: 'rgba(196,224,56,0.4)',
+                  } : {
+                    backgroundColor: 'rgba(224,224,224,0.1)',
+                    borderColor: 'rgba(224,224,224,0.25)',
+                  },
+                }}
+              />
+            </Tooltip>
+          ))}
+        </Box>
+
         {/* 이름 — 서명처럼 작게 */}
         <Typography
           sx={{
@@ -193,13 +250,24 @@ function HeroSection() {
 }
 
 /* ── 2. Projects 섹션 ─────────────────────────────────────── */
-const projectCards = [
-  { title: 'Project 01', desc: '프로젝트 설명이 들어갈 예정입니다.' },
-  { title: 'Project 02', desc: '프로젝트 설명이 들어갈 예정입니다.' },
-  { title: 'Project 03', desc: '프로젝트 설명이 들어갈 예정입니다.' },
-]
-
 function ProjectsSection() {
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const { data } = await supabase
+        .from('projects')
+        .select('*')
+        .eq('is_published', true)
+        .order('sort_order')
+        .limit(3)
+      if (data) setProjects(data)
+      setLoading(false)
+    }
+    fetchProjects()
+  }, [])
+
   return (
     <Box
       sx={{
@@ -223,44 +291,23 @@ function ProjectsSection() {
             사용자 관점에서 문제를 발견하고 해결한 프로젝트를 소개합니다.
           </Typography>
         </Box>
-        <Grid container spacing={3} justifyContent="center">
-          {projectCards.map(({ title, desc }) => (
-            <Grid item xs={12} sm={6} md={4} key={title}>
-              <Card
-                sx={{
-                  height: 220,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'flex-end',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  transition: 'transform 0.2s',
-                  '&:hover': { transform: 'translateY(-4px)' },
-                }}
-              >
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%)',
-                    opacity: 0.15,
-                  }}
-                />
-                <CardContent sx={{ position: 'relative' }}>
-                  <Typography
-                    variant="overline"
-                    sx={{ color: 'var(--color-primary)', letterSpacing: 0 }}
-                  >
-                    {title}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: 'var(--color-text-muted)', mt: 0.5 }}>
-                    {desc}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+
+        {loading && (
+          <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
+            <CircularProgress sx={{ color: 'var(--color-primary)' }} />
+          </Box>
+        )}
+
+        {!loading && (
+          <Grid container spacing={3}>
+            {projects.map((project) => (
+              <Grid item xs={12} sm={6} md={4} key={project.id} sx={{ display: 'flex', flexDirection: 'column' }}>
+                <ProjectCard project={project} />
+              </Grid>
+            ))}
+          </Grid>
+        )}
+
         <Box sx={{ textAlign: 'center', mt: 6 }}>
           <Button
             variant="outlined"
@@ -278,7 +325,7 @@ function ProjectsSection() {
               },
             }}
           >
-            더 보기
+            전체 보기
           </Button>
         </Box>
       </Container>
