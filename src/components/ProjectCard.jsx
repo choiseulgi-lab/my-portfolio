@@ -132,8 +132,8 @@ export default function ProjectCard({ project }) {
             zIndex: 2,
           }}
         >
-          {project.live_url && <OverlayButton href={project.live_url} label="Live Demo" />}
-          {project.detail_url && <OverlayButton href={project.detail_url} label="View Details" />}
+          <OverlayButton href={project.detail_url} label="Live Demo" />
+          <OverlayButton href={project.detail_url} label="View Details" />
         </Box>
       </Box>
 
