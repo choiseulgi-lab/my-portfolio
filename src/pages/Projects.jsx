@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import { Box, Container, Typography, Grid, CircularProgress } from '@mui/material'
 import { supabase } from '../lib/supabase'
 import ProjectCard from '../components/ProjectCard'
+import { useInView } from '../hooks/useInView'
 
 /* Projects 페이지 */
 export default function Projects() {
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
+  const [gridRef, gridInView] = useInView()
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -70,9 +72,19 @@ export default function Projects() {
 
         {/* 카드 그리드 */}
         {!loading && (
-          <Grid container spacing={3}>
-            {projects.map((project) => (
-              <Grid item xs={12} sm={6} md={4} key={project.id} sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Grid ref={gridRef} container spacing={3}>
+            {projects.map((project, index) => (
+              <Grid
+                item xs={12} sm={6} md={4}
+                key={project.id}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  opacity: gridInView ? 1 : 0,
+                  transform: gridInView ? 'translateY(0)' : 'translateY(28px)',
+                  transition: `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`,
+                }}
+              >
                 <ProjectCard project={project} />
               </Grid>
             ))}

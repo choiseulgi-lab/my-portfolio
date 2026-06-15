@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { skills } from '../data/skills'
 import ProjectCard from '../components/ProjectCard'
+import { useInView } from '../hooks/useInView'
 
 /* ── 1. Hero 섹션 ─────────────────────────────────────────── */
 function HeroSection() {
@@ -245,7 +246,8 @@ function HeroSection() {
         </Stack>
       </Container>
 
-    </Box>
+
+</Box>
   )
 }
 
@@ -253,6 +255,8 @@ function HeroSection() {
 function ProjectsSection() {
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
+  const [headerRef, headerInView] = useInView()
+  const [gridRef, gridInView] = useInView()
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -270,6 +274,7 @@ function ProjectsSection() {
 
   return (
     <Box
+      id="projects-preview"
       sx={{
         py: 12,
         backgroundColor: 'var(--color-secondary-light)',
@@ -277,7 +282,16 @@ function ProjectsSection() {
       }}
     >
       <Container maxWidth="lg">
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
+        <Box
+          ref={headerRef}
+          sx={{
+            textAlign: 'center',
+            mb: 8,
+            opacity: headerInView ? 1 : 0,
+            transform: headerInView ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 0.6s ease, transform 0.6s ease',
+          }}
+        >
           <Typography
             variant="overline"
             sx={{ color: 'var(--color-primary)', letterSpacing: 0, mb: 2, display: 'block' }}
@@ -299,9 +313,19 @@ function ProjectsSection() {
         )}
 
         {!loading && (
-          <Grid container spacing={3}>
-            {projects.map((project) => (
-              <Grid item xs={12} sm={6} md={4} key={project.id} sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Grid ref={gridRef} container spacing={3}>
+            {projects.map((project, index) => (
+              <Grid
+                item xs={12} sm={6} md={4}
+                key={project.id}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  opacity: gridInView ? 1 : 0,
+                  transform: gridInView ? 'translateY(0)' : 'translateY(28px)',
+                  transition: `opacity 0.6s ease ${index * 0.12}s, transform 0.6s ease ${index * 0.12}s`,
+                }}
+              >
                 <ProjectCard project={project} />
               </Grid>
             ))}
@@ -664,6 +688,7 @@ function GuestbookFeed({ refreshTrigger }) {
 
 function ContactSection() {
   const [copied, setCopied] = useState(false)
+  const [titleRef, titleInView] = useInView()
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('choiseulgi91@naver.com')
@@ -681,38 +706,47 @@ function ContactSection() {
       }}
     >
       <Container maxWidth="sm">
-        <Typography
-          variant="overline"
-          sx={{ color: '#C4E038', letterSpacing: 0, mb: 2, display: 'block', textAlign: 'center' }}
-        >
-          Contact
-        </Typography>
-        <Typography
+        <Box
+          ref={titleRef}
           sx={{
-            fontSize: { xs: '2.5rem', md: '3.5rem' },
-            fontWeight: 700,
-            color: '#E0E0E0',
-            letterSpacing: '-0.02em',
-            lineHeight: 1,
-            mb: 8,
-            textAlign: 'center',
+            opacity: titleInView ? 1 : 0,
+            transform: titleInView ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 0.6s ease, transform 0.6s ease',
           }}
         >
-          Let's Connect
-        </Typography>
-        <Typography
-          sx={{
-            color: 'rgba(224,224,224,0.45)',
-            fontSize: '0.9375rem',
-            textAlign: 'center',
-            mb: 8,
-            mt: -6,
-            wordBreak: 'keep-all',
-            lineHeight: 1.8,
-          }}
-        >
-          함께 성장할 기회를 찾고 있습니다.
-        </Typography>
+          <Typography
+            variant="overline"
+            sx={{ color: '#C4E038', letterSpacing: 0, mb: 2, display: 'block', textAlign: 'center' }}
+          >
+            Contact
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: { xs: '2.5rem', md: '3.5rem' },
+              fontWeight: 700,
+              color: '#E0E0E0',
+              letterSpacing: '-0.02em',
+              lineHeight: 1,
+              mb: 8,
+              textAlign: 'center',
+            }}
+          >
+            Let's Connect
+          </Typography>
+          <Typography
+            sx={{
+              color: 'rgba(224,224,224,0.45)',
+              fontSize: '0.9375rem',
+              textAlign: 'center',
+              mb: 8,
+              mt: -6,
+              wordBreak: 'keep-all',
+              lineHeight: 1.8,
+            }}
+          >
+            함께 성장할 기회를 찾고 있습니다.
+          </Typography>
+        </Box>
 
         <Box>
           <Divider sx={{ borderColor: 'rgba(224,224,224,0.1)' }} />

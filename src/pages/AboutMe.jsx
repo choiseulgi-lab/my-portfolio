@@ -6,6 +6,7 @@ import {
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { skills } from '../data/skills'
+import { useInView } from '../hooks/useInView'
 
 const aboutMeData = {
   basicInfo: {
@@ -80,6 +81,8 @@ const itemSx = {
 
 export default function AboutMe() {
   const [expanded, setExpanded] = useState('why-design')
+  const [gridRef, gridInView] = useInView()
+  const [accordionRef, accordionInView] = useInView()
 
   const handleChange = (panel) => (_, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
@@ -145,7 +148,7 @@ export default function AboutMe() {
         </Box>
 
         {/* ── 2컬럼 레이아웃 ── */}
-        <Grid container spacing={2} sx={{ mb: { xs: 6, md: 8 } }} alignItems="stretch">
+        <Grid ref={gridRef} container spacing={2} sx={{ mb: { xs: 6, md: 8 }, opacity: gridInView ? 1 : 0, transform: gridInView ? 'translateY(0)' : 'translateY(28px)', transition: 'opacity 0.7s ease, transform 0.7s ease' }} alignItems="stretch">
 
           {/* 좌측: Profile + Skills (4) */}
           <Grid item xs={12} md={5} sx={{ display: 'flex' }}>
@@ -326,7 +329,7 @@ export default function AboutMe() {
         </Box>
 
         {/* ── 아코디언 섹션 ── */}
-        <Box>
+        <Box ref={accordionRef} sx={{ opacity: accordionInView ? 1 : 0, transform: accordionInView ? 'translateY(0)' : 'translateY(24px)', transition: 'opacity 0.6s ease, transform 0.6s ease' }}>
           {aboutMeData.sections.map((section) => (
             <Accordion
               key={section.id}

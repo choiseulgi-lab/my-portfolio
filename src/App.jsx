@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
+import BackToTop from './components/BackToTop'
 import Home from './pages/Home'
 import AboutMe from './pages/AboutMe'
 import Projects from './pages/Projects'
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/about" element={<AboutMe />} />
         <Route path="/projects" element={<Projects />} />
       </Routes>
+      <BackToTop />
     </>
   )
 }
