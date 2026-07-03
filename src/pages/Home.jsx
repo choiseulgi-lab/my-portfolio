@@ -212,7 +212,6 @@ function HeroSection() {
               verticalAlign: '-0.15em',
               mr: '0.08em',
               display: 'inline-block',
-              transform: 'scaleX(-1)',
             }}
           >{OPEN_Q}</Box>왜 여기에 있어야 할까<Box
             component="span"
