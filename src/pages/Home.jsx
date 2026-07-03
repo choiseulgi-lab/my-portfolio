@@ -122,10 +122,6 @@ function HeroSection() {
           from: { opacity: 0, transform: 'translateY(28px)' },
           to: { opacity: 1, transform: 'translateY(0)' },
         },
-        '@keyframes floatAnim': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
       }}
     >
       {/* 캔버스 dot 그리드 */}
@@ -154,18 +150,17 @@ function HeroSection() {
         }}
       />
 
-      {/* 색반전 커서 */}
+      {/* 커서 */}
       <Box
         ref={cursorRef}
         sx={{
           position: 'absolute',
           top: 0,
           left: 0,
-          width: 60,
-          height: 60,
+          width: 32,
+          height: 32,
           borderRadius: '50%',
-          backgroundColor: 'white',
-          mixBlendMode: 'difference',
+          backgroundColor: 'rgba(255,255,255,0.9)',
           pointerEvents: 'none',
           zIndex: 10,
           opacity: 0,
@@ -173,10 +168,6 @@ function HeroSection() {
         }}
       />
 
-      {/* 배경 글로우 */}
-      <Box sx={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', backgroundColor: 'rgba(196,224,56,0.04)', top: '-15%', left: '-12%', filter: 'blur(90px)', animation: 'floatAnim 9s ease-in-out infinite', zIndex: 0, pointerEvents: 'none' }} />
-      <Box sx={{ position: 'absolute', width: 350, height: 350, borderRadius: '50%', backgroundColor: 'rgba(20,80,70,0.18)', bottom: '5%', right: '-8%', filter: 'blur(80px)', animation: 'floatAnim 11s ease-in-out infinite 2s', zIndex: 0, pointerEvents: 'none' }} />
-      <Box sx={{ position: 'absolute', width: 220, height: 220, borderRadius: '50%', backgroundColor: 'rgba(196,224,56,0.05)', top: '35%', right: '8%', filter: 'blur(60px)', animation: 'floatAnim 7s ease-in-out infinite 1s', zIndex: 0, pointerEvents: 'none' }} />
 
       <Container maxWidth="md" sx={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
