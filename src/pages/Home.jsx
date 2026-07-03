@@ -18,6 +18,7 @@ function HeroSection() {
 
   const cursorRef = useRef(null)
   const mouseRef = useRef({ x: -9999, y: -9999, inside: false })
+  const prevTextElRef = useRef(null)
   const rafRef = useRef(null)
 
   useEffect(() => {
@@ -72,15 +73,49 @@ function HeroSection() {
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
       mouseRef.current = { x, y, inside: true }
+
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`
         cursorRef.current.style.opacity = '1'
+      }
+
+      const el = document.elementFromPoint(e.clientX, e.clientY)
+      const textEl = el?.closest('[data-hero-text]')
+
+      if (textEl) {
+        if (cursorRef.current) {
+          cursorRef.current.style.width = '72px'
+          cursorRef.current.style.height = '72px'
+        }
+        if (prevTextElRef.current !== textEl) {
+          if (prevTextElRef.current) prevTextElRef.current.style.transform = ''
+          textEl.style.transform = 'scale(1.04)'
+          textEl.style.transition = 'transform 0.3s ease'
+          prevTextElRef.current = textEl
+        }
+      } else {
+        if (cursorRef.current) {
+          cursorRef.current.style.width = '32px'
+          cursorRef.current.style.height = '32px'
+        }
+        if (prevTextElRef.current) {
+          prevTextElRef.current.style.transform = ''
+          prevTextElRef.current = null
+        }
       }
     }
 
     const onMouseLeave = () => {
       mouseRef.current.inside = false
-      if (cursorRef.current) cursorRef.current.style.opacity = '0'
+      if (cursorRef.current) {
+        cursorRef.current.style.opacity = '0'
+        cursorRef.current.style.width = '32px'
+        cursorRef.current.style.height = '32px'
+      }
+      if (prevTextElRef.current) {
+        prevTextElRef.current.style.transform = ''
+        prevTextElRef.current = null
+      }
     }
 
     resize()
@@ -137,10 +172,11 @@ function HeroSection() {
           height: 32,
           borderRadius: '50%',
           backgroundColor: 'rgba(255,255,255,0.9)',
+          mixBlendMode: 'difference',
           pointerEvents: 'none',
           zIndex: 10,
           opacity: 0,
-          transition: 'opacity 0.3s ease',
+          transition: 'opacity 0.3s ease, width 0.25s ease, height 0.25s ease',
         }}
       />
 
@@ -150,6 +186,7 @@ function HeroSection() {
 
         {/* 헤드라인 */}
         <Typography
+          data-hero-text="true"
           sx={{
             fontSize: { xs: '1.75rem', sm: '2.25rem', md: '2.75rem' },
             fontWeight: 700,
@@ -234,6 +271,7 @@ function HeroSection() {
 
         {/* 이름 — 서명처럼 작게 */}
         <Typography
+          data-hero-text="true"
           sx={{
             fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.4rem' },
             fontWeight: 600,
