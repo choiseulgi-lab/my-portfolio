@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import {
   Box, Typography, Button, Container,
   Grid, CircularProgress,
@@ -14,6 +14,96 @@ import { useInView } from '../hooks/useInView'
 
 /* ── 1. Hero 섹션 ─────────────────────────────────────────── */
 function HeroSection() {
+  const canvasRef = useRef(null)
+  const glowRef = useRef(null)
+  const cursorRef = useRef(null)
+  const mouseRef = useRef({ x: -9999, y: -9999, inside: false })
+  const rafRef = useRef(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    const hero = canvas.parentElement
+    const isMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    let dots = []
+    let spacing = 0
+
+    const resize = () => {
+      canvas.width = hero.offsetWidth
+      canvas.height = hero.offsetHeight
+      spacing = canvas.width / 30
+      dots = []
+      for (let x = spacing / 2; x < canvas.width; x += spacing) {
+        for (let y = spacing / 2; y < canvas.height; y += spacing) {
+          dots.push({ x, y })
+        }
+      }
+    }
+
+    const LIME = [212, 255, 63]
+    const RADIUS = 200
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const { x: mx, y: my, inside } = mouseRef.current
+
+      dots.forEach(({ x, y }) => {
+        let t = 0
+        if (isMouse && inside) {
+          const dist = Math.hypot(x - mx, y - my)
+          if (dist < RADIUS) t = 1 - dist / RADIUS
+        }
+        const opacity = 0.17 + t * 0.6
+        const r = 2.5 + t * 2.5
+        const ri = Math.round(255 * (1 - t) + LIME[0] * t)
+        const gi = Math.round(255 * (1 - t) + LIME[1] * t)
+        const bi = Math.round(255 * (1 - t) + LIME[2] * t)
+        ctx.beginPath()
+        ctx.arc(x, y, r, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(${ri},${gi},${bi},${opacity})`
+        ctx.fill()
+      })
+
+      rafRef.current = requestAnimationFrame(draw)
+    }
+
+    const onMouseMove = (e) => {
+      const rect = hero.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      mouseRef.current = { x, y, inside: true }
+      if (glowRef.current) {
+        glowRef.current.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`
+        glowRef.current.style.opacity = '1'
+      }
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`
+        cursorRef.current.style.opacity = '1'
+      }
+    }
+
+    const onMouseLeave = () => {
+      mouseRef.current.inside = false
+      if (glowRef.current) glowRef.current.style.opacity = '0'
+      if (cursorRef.current) cursorRef.current.style.opacity = '0'
+    }
+
+    resize()
+    draw()
+
+    if (isMouse) {
+      hero.addEventListener('mousemove', onMouseMove)
+      hero.addEventListener('mouseleave', onMouseLeave)
+    }
+    window.addEventListener('resize', resize)
+
+    return () => {
+      cancelAnimationFrame(rafRef.current)
+      hero.removeEventListener('mousemove', onMouseMove)
+      hero.removeEventListener('mouseleave', onMouseLeave)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
 
   return (
     <Box
@@ -23,42 +113,72 @@ function HeroSection() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'var(--color-bg-primary)',
+        backgroundColor: '#0a0a0a',
         borderBottom: '1px solid var(--color-border-dark)',
         position: 'relative',
         overflow: 'hidden',
+        isolation: 'isolate',
         '@keyframes fadeInUp': {
           from: { opacity: 0, transform: 'translateY(28px)' },
           to: { opacity: 1, transform: 'translateY(0)' },
-        },
-        '@keyframes bounceY': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(8px)' },
         },
         '@keyframes floatAnim': {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-20px)' },
         },
-        '@keyframes blink': {
-          '0%, 100%': { opacity: 1 },
-          '50%': { opacity: 0 },
-        },
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: 'radial-gradient(rgba(196,224,56,0.09) 1px, transparent 1px)',
-          backgroundSize: '36px 36px',
-          zIndex: 0,
-        },
       }}
     >
+      {/* 캔버스 dot 그리드 */}
+      <canvas
+        ref={canvasRef}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}
+      />
+
+      {/* 마우스 글로우 레이어 */}
+      <Box
+        ref={glowRef}
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: 600,
+          height: 600,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(212,255,63,0.22) 0%, transparent 65%)',
+          mixBlendMode: 'screen',
+          filter: 'blur(8px)',
+          pointerEvents: 'none',
+          zIndex: 1,
+          opacity: 0,
+          transition: 'opacity 0.4s ease',
+        }}
+      />
+
+      {/* 색반전 커서 */}
+      <Box
+        ref={cursorRef}
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: 60,
+          height: 60,
+          borderRadius: '50%',
+          backgroundColor: 'white',
+          mixBlendMode: 'difference',
+          pointerEvents: 'none',
+          zIndex: 10,
+          opacity: 0,
+          transition: 'opacity 0.3s ease',
+        }}
+      />
+
       {/* 배경 글로우 */}
       <Box sx={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', backgroundColor: 'rgba(196,224,56,0.04)', top: '-15%', left: '-12%', filter: 'blur(90px)', animation: 'floatAnim 9s ease-in-out infinite', zIndex: 0, pointerEvents: 'none' }} />
       <Box sx={{ position: 'absolute', width: 350, height: 350, borderRadius: '50%', backgroundColor: 'rgba(20,80,70,0.18)', bottom: '5%', right: '-8%', filter: 'blur(80px)', animation: 'floatAnim 11s ease-in-out infinite 2s', zIndex: 0, pointerEvents: 'none' }} />
       <Box sx={{ position: 'absolute', width: 220, height: 220, borderRadius: '50%', backgroundColor: 'rgba(196,224,56,0.05)', top: '35%', right: '8%', filter: 'blur(60px)', animation: 'floatAnim 7s ease-in-out infinite 1s', zIndex: 0, pointerEvents: 'none' }} />
 
-      <Container maxWidth="md" sx={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+      <Container maxWidth="md" sx={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
 
         {/* 헤드라인 */}
