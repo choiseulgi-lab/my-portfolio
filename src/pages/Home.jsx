@@ -198,7 +198,31 @@ function HeroSection() {
             animation: 'fadeInUp 0.6s ease 0.3s both',
           }}
         >
-          "왜 여기에 있어야 할까?"<br />
+          <Box
+            component="span"
+            sx={{
+              fontSize: { xs: '4rem', sm: '5rem', md: '6.5rem' },
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontWeight: 400,
+              color: '#C4E038',
+              lineHeight: 0,
+              verticalAlign: '-0.15em',
+              mr: '0.08em',
+              display: 'inline-block',
+            }}
+          >{'“'}</Box>왜 여기에 있어야 할까?<Box
+            component="span"
+            sx={{
+              fontSize: { xs: '4rem', sm: '5rem', md: '6.5rem' },
+              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontWeight: 400,
+              color: '#C4E038',
+              lineHeight: 0,
+              verticalAlign: '-0.15em',
+              ml: '0.08em',
+              display: 'inline-block',
+            }}
+          >{'”'}</Box><br />
           이유를 담아 설계하는 디자이너 최슬기입니다
         </Typography>
 
