@@ -14,22 +14,6 @@ import { useInView } from '../hooks/useInView'
 
 /* ── 1. Hero 섹션 ─────────────────────────────────────────── */
 function HeroSection() {
-  const [displayedRole, setDisplayedRole] = useState('')
-  const [typingDone, setTypingDone] = useState(false)
-  const fullRole = 'UI/UX Designer'
-
-  useEffect(() => {
-    let i = 0
-    const timer = setInterval(() => {
-      i++
-      setDisplayedRole(fullRole.slice(0, i))
-      if (i >= fullRole.length) {
-        clearInterval(timer)
-        setTypingDone(true)
-      }
-    }, 80)
-    return () => clearInterval(timer)
-  }, [])
 
   return (
     <Box
@@ -76,18 +60,6 @@ function HeroSection() {
 
       <Container maxWidth="md" sx={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
 
-        {/* 타이핑 role */}
-        <Box sx={{ mb: 3, minHeight: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'fadeInUp 0.6s ease forwards' }}>
-          <Typography
-            component="span"
-            sx={{ color: 'var(--color-primary)', letterSpacing: 4, fontSize: '0.85rem', fontWeight: 700, fontFamily: '"Space Mono", monospace' }}
-          >
-            {displayedRole}
-          </Typography>
-          {!typingDone && (
-            <Box component="span" sx={{ display: 'inline-block', width: '2px', height: '1em', backgroundColor: 'var(--color-primary)', ml: '2px', animation: 'blink 0.8s step-end infinite' }} />
-          )}
-        </Box>
 
         {/* 헤드라인 */}
         <Typography
@@ -187,7 +159,7 @@ function HeroSection() {
             animation: 'fadeInUp 0.6s ease 0.6s both',
           }}
         >
-          최슬기
+          Web & Editorial Designer
         </Typography>
 
         {/* 버튼 */}
