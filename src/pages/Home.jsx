@@ -210,7 +210,7 @@ function HeroSection() {
               mr: '0.08em',
               display: 'inline-block',
             }}
-          >{'“'}</Box>왜 여기에 있어야 할까?<Box
+          >{'”'}</Box>왜 여기에 있어야 할까<Box
             component="span"
             sx={{
               fontSize: { xs: '4rem', sm: '5rem', md: '6.5rem' },
