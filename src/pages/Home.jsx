@@ -135,6 +135,9 @@ function HeroSection() {
     }
   }, [])
 
+  const OPEN_Q = String.fromCharCode(0x201C)
+  const CLOSE_Q = String.fromCharCode(0x201D)
+
   return (
     <Box
       sx={{
@@ -211,11 +214,11 @@ function HeroSection() {
               display: 'inline-block',
               transform: 'scaleX(-1)',
             }}
-          >{'”'}</Box>왜 여기에 있어야 할까<Box
-            component=”span”
+          >{OPEN_Q}</Box>왜 여기에 있어야 할까<Box
+            component="span"
             sx={{
               fontSize: { xs: '4rem', sm: '5rem', md: '6.5rem' },
-              fontFamily: 'Georgia, “Times New Roman”, serif',
+              fontFamily: 'Georgia, "Times New Roman", serif',
               fontWeight: 400,
               color: 'white',
               lineHeight: 0,
@@ -223,7 +226,7 @@ function HeroSection() {
               ml: '0.08em',
               display: 'inline-block',
             }}
-          >{'”'}</Box><br />
+          >{CLOSE_Q}</Box><br />
           이유를 담아 설계하는 디자이너 최슬기입니다
         </Typography>
 
