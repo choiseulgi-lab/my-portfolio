@@ -204,19 +204,20 @@ function HeroSection() {
               fontSize: { xs: '4rem', sm: '5rem', md: '6.5rem' },
               fontFamily: 'Georgia, "Times New Roman", serif',
               fontWeight: 400,
-              color: '#C4E038',
+              color: 'white',
               lineHeight: 0,
               verticalAlign: '-0.15em',
               mr: '0.08em',
               display: 'inline-block',
+              transform: 'scaleX(-1)',
             }}
           >{'”'}</Box>왜 여기에 있어야 할까<Box
-            component="span"
+            component=”span”
             sx={{
               fontSize: { xs: '4rem', sm: '5rem', md: '6.5rem' },
-              fontFamily: 'Georgia, "Times New Roman", serif',
+              fontFamily: 'Georgia, “Times New Roman”, serif',
               fontWeight: 400,
-              color: '#C4E038',
+              color: 'white',
               lineHeight: 0,
               verticalAlign: '-0.15em',
               ml: '0.08em',
