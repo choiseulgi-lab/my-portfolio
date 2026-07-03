@@ -15,7 +15,7 @@ import { useInView } from '../hooks/useInView'
 /* ── 1. Hero 섹션 ─────────────────────────────────────────── */
 function HeroSection() {
   const canvasRef = useRef(null)
-  const glowRef = useRef(null)
+
   const cursorRef = useRef(null)
   const mouseRef = useRef({ x: -9999, y: -9999, inside: false })
   const rafRef = useRef(null)
@@ -72,10 +72,6 @@ function HeroSection() {
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
       mouseRef.current = { x, y, inside: true }
-      if (glowRef.current) {
-        glowRef.current.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`
-        glowRef.current.style.opacity = '1'
-      }
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`
         cursorRef.current.style.opacity = '1'
@@ -84,7 +80,6 @@ function HeroSection() {
 
     const onMouseLeave = () => {
       mouseRef.current.inside = false
-      if (glowRef.current) glowRef.current.style.opacity = '0'
       if (cursorRef.current) cursorRef.current.style.opacity = '0'
     }
 
@@ -130,25 +125,6 @@ function HeroSection() {
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}
       />
 
-      {/* 마우스 글로우 레이어 */}
-      <Box
-        ref={glowRef}
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: 600,
-          height: 600,
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(212,255,63,0.22) 0%, transparent 65%)',
-          mixBlendMode: 'screen',
-          filter: 'blur(8px)',
-          pointerEvents: 'none',
-          zIndex: 1,
-          opacity: 0,
-          transition: 'opacity 0.4s ease',
-        }}
-      />
 
       {/* 커서 */}
       <Box
