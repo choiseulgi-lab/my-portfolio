@@ -102,8 +102,8 @@ function HeroSection() {
             animation: 'fadeInUp 0.6s ease 0.3s both',
           }}
         >
-          보기 좋은 화면을 넘어<br />
-          사용하기 편한 경험을 만드는 디자이너
+          "왜 여기에 있어야 할까?"<br />
+          이유를 담아 설계하는 디자이너 최슬기입니다
         </Typography>
 
         {/* 포인트 라인 */}
